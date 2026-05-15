@@ -2,50 +2,203 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>Oferta Programática · Índice de Ministerios</title>
+<title>Oferta Programática · Inicio</title>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-          max-width: 760px; margin: 40px auto; padding: 0 20px; color: #222; line-height: 1.5; }
-  h1 { font-size: 28px; margin-bottom: 8px; }
-  .subtitle { color: #666; font-size: 14px; margin-bottom: 32px; }
-  ul { list-style: none; padding: 0; }
-  li { padding: 10px 14px; border-bottom: 1px solid #eee; }
-  li:hover { background: #f7f7f7; }
-  a { color: #2E5FA3; text-decoration: none; font-weight: 500; }
-  a:hover { text-decoration: underline; }
-  .count { color: #888; font-size: 13px; font-weight: normal; }
-  .total { margin-top: 24px; padding: 14px; background: #f0f4fa;
-            border-radius: 6px; font-size: 14px; color: #555; }
+  :root {
+    --ink: #061453;
+    --ink2: #444;
+    --ink3: #666;
+    --bg-soft: rgba(6,20,83,0.06);
+    --border-soft: rgba(6,20,83,0.15);
+    --sidebar-w: 500px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #222; line-height: 1.6;
+  }
+
+  /* === Layout de dos columnas === */
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    background: var(--bg-soft);
+    border-right: 1px solid var(--border-soft);
+    padding: 28px 20px;
+    overflow-y: auto;
+  }
+  .sidebar h2 {
+    font-size: 16px;
+    margin: 0 0 4px 0;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .sidebar .subtitle {
+    color: var(--ink3);
+    font-size: 12px;
+    margin-bottom: 18px;
+  }
+
+  .content {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    padding: 40px 48px;
+    max-width: 880px;
+  }
+
+  /* === Lista de ministerios en el sidebar === */
+  .min-list { list-style: none; padding: 0; margin: 0; }
+  .min-list li {
+    padding: 10px 12px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+  }
+  .min-list li:hover { background: rgba(6,20,83,0.08); }
+  .min-list a {
+    color: var(--ink);
+    text-decoration: none;
+    display: block;
+  }
+  .min-list a:hover { text-decoration: none; }
+
+  .min-list .partida {
+    display: block;
+    font-size: 11px;
+    color: var(--ink3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .min-list .nombre {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .min-list .count {
+    display: block;
+    font-size: 12px;
+    color: var(--ink3);
+    margin-top: 4px;
+  }
+  
+  /* === Contenido derecho === */
+  h1 { font-size: 32px; margin: 0 0 8px 0; color: var(--ink); }
+  h2.main { font-size: 20px; margin: 32px 0 12px 0; color: var(--ink); text-transform: none; letter-spacing: 0; }
+  .lead { color: var(--ink3); font-size: 15px; margin-bottom: 32px; }
+
+  .section {
+    background: var(--bg-soft);
+    border-left: 3px solid var(--ink);
+    padding: 16px 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .section p { margin: 8px 0; }
+  .section ul { margin: 8px 0; padding-left: 22px; }
+
+  .total {
+    margin-top: 24px; padding: 14px;
+    background: var(--bg-soft);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--ink2);
+  }
+
+  /* Responsive: en pantallas chicas el sidebar pasa arriba */
+  @media (max-width: 900px) {
+    .sidebar {
+      position: static;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .content {
+      margin-left: 0;
+      padding: 24px;
+    }
+  }
 </style>
 </head>
 <body>
-  <h1>Oferta Programática</h1>
-  <p class="subtitle">Índice de ministerios · 23 ministerios</p>
-  <ul>
-    <li><a href="oferta_Interior.html">Ministerio del Interior</a> <span class="count">— 34 BIPS</span></li>
-    <li><a href="oferta_Relaciones Exteriores.html">Ministerio de Relaciones Exteriores</a> <span class="count">— 10 BIPS</span></li>
-    <li><a href="oferta_Economía, Fomento y Turismo.html">Ministerio de Economía, Fomento y Turismo</a> <span class="count">— 67 BIPS</span></li>
-    <li><a href="oferta_Hacienda.html">Ministerio de Hacienda</a> <span class="count">— 2 BIPS</span></li>
-    <li><a href="oferta_Educación.html">Ministerio de Educación</a> <span class="count">— 93 BIPS</span></li>
-    <li><a href="oferta_Justicia y Derechos Humanos.html">Ministerio de Justicia y Derechos Humanos</a> <span class="count">— 37 BIPS</span></li>
-    <li><a href="oferta_Obras Públicas.html">Ministerio de Obras Públicas</a> <span class="count">— 3 BIPS</span></li>
-    <li><a href="oferta_Agricultura.html">Ministerio de Agricultura</a> <span class="count">— 45 BIPS</span></li>
-    <li><a href="oferta_Bienes Nacionales.html">Ministerio de Bienes Nacionales</a> <span class="count">— 6 BIPS</span></li>
-    <li><a href="oferta_Trabajo y Previsión Social.html">Ministerio del Trabajo y Previsión Social</a> <span class="count">— 35 BIPS</span></li>
-    <li><a href="oferta_Salud.html">Ministerio de Salud</a> <span class="count">— 53 BIPS</span></li>
-    <li><a href="oferta_Minería.html">Ministerio de Minería</a> <span class="count">— 3 BIPS</span></li>
-    <li><a href="oferta_Vivienda y Urbanismo.html">Ministerio de Vivienda y Urbanismo</a> <span class="count">— 18 BIPS</span></li>
-    <li><a href="oferta_Transporte y Telecomunicaciones.html">Ministerio de Transporte y Telecomunicaciones</a> <span class="count">— 7 BIPS</span></li>
-    <li><a href="oferta_Secretaría General de Gobierno.html">Ministerio Secretaría General de Gobierno</a> <span class="count">— 8 BIPS</span></li>
-    <li><a href="oferta_Desarrollo Social y Familia.html">Ministerio de Desarrollo Social y Familia</a> <span class="count">— 106 BIPS</span></li>
-    <li><a href="oferta_Energía.html">Ministerio de Energía</a> <span class="count">— 9 BIPS</span></li>
-    <li><a href="oferta_Medio Ambiente.html">Ministerio del Medio Ambiente</a> <span class="count">— 8 BIPS</span></li>
-    <li><a href="oferta_Deporte.html">Ministerio del Deporte</a> <span class="count">— 7 BIPS</span></li>
-    <li><a href="oferta_la Mujer y la Equidad de Género.html">Ministerio de la Mujer y la Equidad de Género</a> <span class="count">— 12 BIPS</span></li>
-    <li><a href="oferta_las Culturas, las  Artes y el Patrimonio.html">Ministerio de las Culturas, las  Artes y el Patrimonio</a> <span class="count">— 61 BIPS</span></li>
-    <li><a href="oferta_Ciencia, Tecnología, Conocimiento e Innovación.html">Ministerio de Ciencia, Tecnología, Conocimiento e Innovación</a> <span class="count">— 29 BIPS</span></li>
-    <li><a href="oferta_Seguridad Pública.html">Ministerio de Seguridad Pública</a> <span class="count">— 13 BIPS</span></li>
+
+<div class="layout">
+
+  <!-- ============================================================ -->
+  <!-- SIDEBAR — generado automáticamente, no editar                 -->
+  <!-- ============================================================ -->
+  <aside class="sidebar">
+    <h2>Ministerios</h2>
+      <p class="subtitle">Total de programas monitoreados: <strong>666</strong></p>
+  <ul class="min-list">
+    <li><a href="oferta_05.html"><span class="partida">Partida 05</span><span class="nombre">Ministerio del Interior</span><span class="count">34 programas</span></a></li>
+    <li><a href="oferta_06.html"><span class="partida">Partida 06</span><span class="nombre">Ministerio de Relaciones Exteriores</span><span class="count">10 programas</span></a></li>
+    <li><a href="oferta_07.html"><span class="partida">Partida 07</span><span class="nombre">Ministerio de Economía, Fomento y Turismo</span><span class="count">67 programas</span></a></li>
+    <li><a href="oferta_08.html"><span class="partida">Partida 08</span><span class="nombre">Ministerio de Hacienda</span><span class="count">2 programas</span></a></li>
+    <li><a href="oferta_09.html"><span class="partida">Partida 09</span><span class="nombre">Ministerio de Educación</span><span class="count">93 programas</span></a></li>
+    <li><a href="oferta_10.html"><span class="partida">Partida 10</span><span class="nombre">Ministerio de Justicia y Derechos Humanos</span><span class="count">37 programas</span></a></li>
+    <li><a href="oferta_12.html"><span class="partida">Partida 12</span><span class="nombre">Ministerio de Obras Públicas</span><span class="count">3 programas</span></a></li>
+    <li><a href="oferta_13.html"><span class="partida">Partida 13</span><span class="nombre">Ministerio de Agricultura</span><span class="count">45 programas</span></a></li>
+    <li><a href="oferta_14.html"><span class="partida">Partida 14</span><span class="nombre">Ministerio de Bienes Nacionales</span><span class="count">6 programas</span></a></li>
+    <li><a href="oferta_15.html"><span class="partida">Partida 15</span><span class="nombre">Ministerio del Trabajo y Previsión Social</span><span class="count">35 programas</span></a></li>
+    <li><a href="oferta_16.html"><span class="partida">Partida 16</span><span class="nombre">Ministerio de Salud</span><span class="count">53 programas</span></a></li>
+    <li><a href="oferta_17.html"><span class="partida">Partida 17</span><span class="nombre">Ministerio de Minería</span><span class="count">3 programas</span></a></li>
+    <li><a href="oferta_18.html"><span class="partida">Partida 18</span><span class="nombre">Ministerio de Vivienda y Urbanismo</span><span class="count">18 programas</span></a></li>
+    <li><a href="oferta_19.html"><span class="partida">Partida 19</span><span class="nombre">Ministerio de Transporte y Telecomunicaciones</span><span class="count">7 programas</span></a></li>
+    <li><a href="oferta_20.html"><span class="partida">Partida 20</span><span class="nombre">Ministerio Secretaría General de Gobierno</span><span class="count">8 programas</span></a></li>
+    <li><a href="oferta_21.html"><span class="partida">Partida 21</span><span class="nombre">Ministerio de Desarrollo Social y Familia</span><span class="count">106 programas</span></a></li>
+    <li><a href="oferta_24.html"><span class="partida">Partida 24</span><span class="nombre">Ministerio de Energía</span><span class="count">9 programas</span></a></li>
+    <li><a href="oferta_25.html"><span class="partida">Partida 25</span><span class="nombre">Ministerio del Medio Ambiente</span><span class="count">8 programas</span></a></li>
+    <li><a href="oferta_26.html"><span class="partida">Partida 26</span><span class="nombre">Ministerio del Deporte</span><span class="count">7 programas</span></a></li>
+    <li><a href="oferta_27.html"><span class="partida">Partida 27</span><span class="nombre">Ministerio de la Mujer y la Equidad de Género</span><span class="count">12 programas</span></a></li>
+    <li><a href="oferta_29.html"><span class="partida">Partida 29</span><span class="nombre">Ministerio de las Culturas, las  Artes y el Patrimonio</span><span class="count">61 programas</span></a></li>
+    <li><a href="oferta_30.html"><span class="partida">Partida 30</span><span class="nombre">Ministerio de Ciencia, Tecnología, Conocimiento e Innovación</span><span class="count">29 programas</span></a></li>
+    <li><a href="oferta_32.html"><span class="partida">Partida 32</span><span class="nombre">Ministerio de Seguridad Pública</span><span class="count">13 programas</span></a></li>
   </ul>
-  <div class="total">Total de BIPS: <strong>666</strong></div>
+
+  </aside>
+
+  <!-- ============================================================ -->
+  <!-- CONTENIDO — edita libremente                                  -->
+  <!-- ============================================================ -->
+  <main class="content">
+
+    <h1>Oferta Programática 2026</h1>
+    <p class="lead">Análisis de programas del presupuesto público</p>
+
+    <section class="section">
+      <h2 class="main">Sobre este sitio</h2>
+      <p>[Descripción general del proyecto / propósito del análisis]</p>
+    </section>
+
+    <section class="section">
+      <h2 class="main">Cómo usar</h2>
+      <ul>
+        <li>[Instrucción 1]</li>
+        <li>[Instrucción 2]</li>
+        <li>[Instrucción 3]</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="main">Metodología</h2>
+      <p>[Explicación de cómo se construyó el análisis, fuentes, criterios, etc.]</p>
+    </section>
+
+  </main>
+
+</div>
+
 </body>
 </html>

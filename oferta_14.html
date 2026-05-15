@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oferta Programática · Ministerio de Bienes Nacionales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#F4F1EB;--bg-card:#FDFBF8;--bg-dark:#061453;--ink:#1C1917;--ink2:#4A4540;--ink3:#8A8580;--a1:#c8341a;--a2:#2E5FA3;--a3:#1D7D5A;--border:rgba(28,25,23,.1);--border2:rgba(28,25,23,.2);--fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;--r:4px;--rl:8px}
+body{font-family:var(--fb);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;min-height:100vh}
+.hdr{background:var(--bg-dark);color:#F4F1EB;padding:2.5rem 2.5rem 2rem;position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;top:-50px;right:-50px;width:260px;height:260px;border:35px solid rgba(200,80,26,.15);border-radius:50%}
+.hdr-eye{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,235,.45);margin-bottom:.6rem}
+.hdr h1{font-family:var(--fd);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;line-height:1.15;position:relative}
+.hdr h1 em{color:#E8844A;font-style:normal}
+.hdr-sub{margin-top:.75rem;font-size:13px;color:rgba(244,241,235,.5);max-width:480px;position:relative}
+.hdr-stats{display:flex;gap:2rem;margin-top:1.5rem;flex-wrap:wrap;position:relative}
+.hs-v{font-family:var(--fd);font-size:1.4rem;font-weight:700}.hs-v em{color:#E8844A;font-style:normal}
+.hs-l{font-size:11px;color:rgba(244,241,235,.4);text-transform:uppercase;letter-spacing:.08em;margin-top:1px}
+.nav{background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;position:sticky;top:0;z-index:100;overflow-x:auto}
+.ntab{font-family:var(--fd);font-size:13px;font-weight:600;padding:.9rem 1.25rem;border:none;background:none;color:var(--ink3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s}
+.ntab:hover{color:var(--ink)}.ntab.active{color:var(--a1);border-bottom-color:var(--a1)}
+.main{padding:1.75rem 2.5rem 4rem;max-width:1100px}
+.panel{display:none}.panel.active{display:block}
+.sbar{display:flex;gap:8px;margin-bottom:1.25rem}
+.sinput{flex:1;font-family:var(--fb);font-size:13px;padding:9px 14px;border:1px solid var(--border2);border-radius:var(--r);background:var(--bg-card);color:var(--ink)}
+.sinput:focus{outline:2px solid var(--a1);outline-offset:1px}.sinput::placeholder{color:var(--ink3)}
+.note{background:#EEF3F9;border-left:3px solid var(--a2);border-radius:0 var(--r) var(--r) 0;padding:.7rem 1rem;font-size:12px;color:var(--ink2);margin-bottom:1.25rem}
+.fbtns{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.fbtn{font-family:var(--fd);font-size:12px;font-weight:600;padding:6px 12px;border:1px solid var(--border2);border-radius:var(--r);background:var(--bg-card);color:var(--ink2);cursor:pointer;transition:all .15s;white-space:nowrap}
+.fbtn:hover,.fbtn.active{background:var(--bg-dark);color:#F4F1EB;border-color:var(--bg-dark)}
+/* LEY */
+.ley-wrap{display:grid;grid-template-columns:270px 1fr;gap:1.5rem;align-items:start}
+.tree-nav{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;position:sticky;top:56px;max-height:calc(100vh - 80px);overflow-y:auto}
+.tree-sec{border-bottom:1px solid var(--border)}.tree-sec:last-child{border-bottom:none}
+.tree-cap{font-family:var(--fd);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 1rem .45rem;color:var(--ink3);background:var(--bg);position:sticky;top:0;z-index:1}
+.tree-prog{display:flex;align-items:center;gap:6px;padding:.5rem 1rem;cursor:pointer;font-size:12px;color:var(--ink2);transition:background .1s;border-left:3px solid transparent}
+.tree-prog:hover{background:var(--bg);color:var(--ink)}
+.tree-prog.active{background:#FEF6F2;color:var(--a1);border-left-color:var(--a1);font-weight:500}
+.tp-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:background .1s}
+.tree-prog.active .tp-dot{background:var(--a1)}
+.det-placeholder{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:3rem;text-align:center;color:var(--ink3);font-size:13px}
+.detail{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden}
+.det-hdr{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);background:var(--bg)}
+.det-bc{font-size:11px;color:var(--ink3);margin-bottom:.3rem}
+.det-title{font-family:var(--fd);font-size:1rem;font-weight:700;color:var(--ink)}
+.det-monto{font-size:12px;color:var(--ink3);margin-top:.2rem}
+.det-body{padding:1.25rem 1.5rem}
+.subt{border:1px solid var(--border);border-radius:var(--r);margin-bottom:.5rem;overflow:hidden}
+.subt-hdr{display:flex;align-items:center;gap:.5rem;padding:.6rem .9rem;cursor:pointer;background:var(--bg);user-select:none;transition:background .1s}
+.subt-hdr:hover,.subt-hdr.open{background:#EDEAE4}
+.subt-num{font-family:var(--fd);font-size:10px;font-weight:700;color:var(--ink3);width:18px;flex-shrink:0}
+.subt-n{font-size:12px;font-weight:500;color:var(--ink);flex:1}
+.subt-m{font-family:var(--fd);font-size:12px;color:var(--ink2);white-space:nowrap}
+.subt-arr{font-size:9px;color:var(--ink3);margin-left:.4rem;flex-shrink:0;transition:transform .2s}
+.subt-hdr.open .subt-arr{transform:rotate(180deg)}
+.subt-body{display:none;padding:.5rem .75rem .75rem}.subt-hdr.open+.subt-body{display:block}
+.item-row{padding:.4rem;cursor:pointer;border-radius:var(--r);transition:background .1s}
+.item-row:hover{background:var(--bg)}
+.item-hdr{display:flex;align-items:center;gap:.4rem}
+.item-num{font-size:11px;color:var(--ink3);width:18px;flex-shrink:0}
+.item-n{font-size:12px;color:var(--ink2);flex:1}.item-m{font-size:12px;color:var(--ink3);white-space:nowrap}
+.item-body{display:none;padding:.25rem 0 .1rem 1.5rem}
+.asig{display:flex;align-items:flex-start;gap:.6rem;padding:.5rem .65rem;margin-bottom:.25rem;border-radius:var(--r);cursor:pointer;border:1px solid transparent;transition:all .15s;background:var(--bg-card)}
+.asig:hover,.asig.active{border-color:var(--a1);background:#FEF6F2}
+.asig-num{font-family:var(--fd);font-size:10px;color:var(--ink3);width:22px;flex-shrink:0;padding-top:2px}
+.asig-info{flex:1;min-width:0}.asig-n{font-size:12px;font-weight:500;color:var(--ink);line-height:1.3}
+.asig-code{font-family:monospace;font-size:10px;color:var(--ink3);margin-top:1px}
+.asig-hint{font-size:11px;color:var(--a2);margin-top:2px}
+.asig-m{font-family:var(--fd);font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap;padding-top:2px;flex-shrink:0}
+.bpanel{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);margin:.3rem 0 .3rem 1.75rem;padding:.65rem .9rem;display:none}
+.bpanel-lbl{font-family:var(--fd);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-bottom:.4rem}
+.bchip{display:flex;align-items:center;gap:.5rem;padding:.4rem .65rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:.3rem;cursor:pointer;transition:border-color .15s}
+.bchip:last-child{margin-bottom:0}.bchip:hover{border-color:var(--a2)}
+.bchip-id{font-family:var(--fd);font-size:10px;color:var(--ink3);flex-shrink:0}
+.bchip-n{font-size:12px;color:var(--ink);font-weight:500;flex:1}
+.bchip-s{font-size:10px;color:var(--ink3);white-space:nowrap}
+.no-bips{font-size:12px;color:var(--ink3);font-style:italic}
+/* PROGRAMAS */
+.grp-hdr{display:flex;align-items:center;gap:.75rem;padding:.85rem 1.25rem;background:var(--bg-dark);border-radius:var(--rl);margin-bottom:.75rem;margin-top:1.5rem}
+.grp-hdr:first-child{margin-top:0}
+.grp-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.grp-n{font-family:var(--fd);font-size:13px;font-weight:700;color:#F4F1EB}
+.grp-c{font-size:12px;color:rgba(244,241,235,.4);margin-left:auto}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin-bottom:.5rem}
+.pc{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:.9rem 1.1rem;cursor:pointer;transition:border-color .15s,box-shadow .15s;position:relative}
+.pc:hover{border-color:var(--a1);box-shadow:0 0 0 2px rgba(200,80,26,.08)}
+.pc.active{border-color:var(--a1);background:#FEF6F2}
+.pc-srv{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:.2rem}
+.pc-id{font-family:var(--fd);font-size:11px;color:var(--a1);margin-bottom:.15rem}
+.pc-n{font-size:13px;font-weight:500;color:var(--ink);line-height:1.3}
+.pc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:.35rem}
+.pct{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px}
+.tok{background:#D6EEE4;color:#0F6E56}.tna{background:#F1EFE8;color:var(--ink3)}
+.twrn{background:#FEF3D6;color:#8A5A00}.tbad{background:#FAE0D6;color:#993C1D}
+.fc{position:absolute;top:.75rem;right:.75rem;font-family:var(--fd);font-size:10px;font-weight:700;background:#FAE0D6;color:#993C1D;border-radius:20px;padding:2px 7px}
+/* FICHA */
+.ficha{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);margin-top:1rem;overflow:hidden}
+.ficha-hdr{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);background:var(--bg);display:flex;align-items:flex-start;gap:1rem}
+.ficha-bdg{font-family:var(--fd);font-size:12px;font-weight:700;color:var(--a1);background:#FEF6F2;border:1px solid rgba(200,80,26,.2);border-radius:var(--r);padding:4px 10px;white-space:nowrap;flex-shrink:0}
+.ficha-title{font-family:var(--fd);font-size:1rem;font-weight:700;color:var(--ink);line-height:1.3}
+.ficha-srv{font-size:12px;color:var(--ink3);margin-top:2px}
+.itabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg);overflow-x:auto}
+.itab{font-family:var(--fd);font-size:12px;font-weight:600;padding:.65rem 1.1rem;border:none;background:none;color:var(--ink3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s;flex-shrink:0}
+.itab:hover{color:var(--ink)}.itab.active{color:var(--a1);border-bottom-color:var(--a1)}
+.itab-p{display:none;padding:1.25rem 1.5rem}.itab-p.active{display:block}
+.igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:1.25rem}
+.igc{background:var(--bg-card);padding:.85rem 1rem}
+.ig-l{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.25rem}
+.ig-v{font-family:var(--fd);font-size:.95rem;font-weight:700;color:var(--ink)}.ig-v.sm{font-size:.8rem}
+.best{display:inline-block;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px}
+.est-ok{background:#D6EEE4;color:#0F6E56}.est-reb{background:#FEF3D6;color:#8A5A00}.est-desc{background:#FAE0D6;color:#993C1D}
+.bex{display:inline-block;font-size:11px;font-weight:500;padding:3px 9px;border-radius:20px}
+.ex-ok{background:#DCE8F5;color:#185FA5}.ex-na{background:var(--bg);color:var(--ink3)}.ex-obj{background:#FAE0D6;color:#993C1D}
+.desc-block{margin-bottom:1.25rem}
+.desc-label{font-family:var(--fd);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:.4rem}
+.desc-text{font-size:13px;color:var(--ink2);line-height:1.6}
+.desc-problema{background:#FEF6F2;border-left:3px solid var(--a1);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem}
+.desc-proposito{background:#F0F5FF;border-left:3px solid var(--a2);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem}
+.desc-descripcion{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:.75rem 1rem}
+.ar{display:flex;align-items:flex-start;gap:.75rem;padding:.6rem .75rem;border:1px solid var(--border);border-radius:var(--r);margin-bottom:.4rem;background:var(--bg-card);cursor:pointer;transition:border-color .15s}
+.ar:hover{border-color:var(--a1)}
+.ar-code{font-family:monospace;font-size:11px;color:var(--a2);white-space:nowrap;flex-shrink:0;padding-top:2px;min-width:155px}
+.ar-info{flex:1;min-width:0}.ar-n{font-size:13px;font-weight:500;color:var(--ink);line-height:1.3}
+.ar-loc{font-size:11px;color:var(--ink3);margin-top:1px}
+.ar-m{font-family:var(--fd);font-size:13px;font-weight:700;color:var(--ink2);white-space:nowrap;padding-top:2px;flex-shrink:0}
+.no-asig{padding:.75rem 1rem;background:var(--bg);border:1px dashed var(--border2);border-radius:var(--r);font-size:13px;color:var(--ink3)}
+/* MONITOREO */
+.mon-sum{display:flex;gap:.75rem;align-items:center;padding:.7rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);margin-bottom:1.25rem}
+.mon-n{font-family:var(--fd);font-size:1.2rem;font-weight:700}
+.mon-n.warn{color:var(--a1)}.mon-n.ok{color:var(--a3)}
+.mon-lbl{font-size:12px;color:var(--ink3)}
+.mgrp{margin-bottom:1.5rem}
+.mgrp-t{font-family:var(--fd);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.mrow{display:flex;align-items:center;justify-content:space-between;padding:.45rem .25rem;border-bottom:1px solid var(--border)}
+.mrow:last-child{border-bottom:none}
+.mrow-n{font-size:13px;color:var(--ink2);flex:1;padding-right:1rem}
+.myes{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:22px;border-radius:11px;background:#FAE0D6;color:#993C1D;font-size:11px;font-weight:700;padding:0 8px;flex-shrink:0}
+.mno{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:22px;border-radius:11px;background:#E8F5EE;color:#1D7D5A;font-size:11px;font-weight:700;padding:0 8px;flex-shrink:0}
+/* EX POST */
+.ep-none{padding:1.5rem;background:var(--bg);border:1px dashed var(--border2);border-radius:var(--r);font-size:13px;color:var(--ink3);text-align:center}
+.ep-header{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.ep-eval-name{font-family:var(--fd);font-size:.9rem;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:.3rem}
+.ep-meta{font-size:12px;color:var(--ink3)}
+.ep-cal{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;white-space:nowrap}
+.ep-cal-mal{background:#FAE0D6;color:#993C1D}.ep-cal-bajo{background:#FEF3D6;color:#8A5A00}.ep-cal-bueno{background:#D6EEE4;color:#0F6E56}
+.ep-links{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.25rem}
+.ep-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:6px 12px;border-radius:var(--r);text-decoration:none;transition:opacity .15s}
+.ep-link:hover{opacity:.8}.ep-link-inf{background:#E8F0FB;color:#2E5FA3}.ep-link-seg{background:#E8F5EE;color:#1D7D5A}.ep-link-none{background:var(--bg);color:var(--ink3);cursor:default}
+.ep-section{margin-bottom:1.5rem}
+.ep-sec-title{font-family:var(--fd);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.ep-block{margin-bottom:.75rem}
+.ep-block-lbl{font-size:11px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem}
+.ep-block-txt{font-size:13px;color:var(--ink2);line-height:1.6;background:var(--bg);border-radius:var(--r);padding:.6rem .75rem}
+.ep-compromisos{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:.5rem}
+.ep-compromisos th{font-family:var(--fd);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);text-align:left;padding:.45rem .75rem;border-bottom:1px solid var(--border2);background:var(--bg)}
+.ep-compromisos td{padding:.45rem .75rem;border-bottom:1px solid var(--border);vertical-align:middle}
+.ep-compromisos tr:last-child td{border-bottom:none}
+.ep-ratio{font-family:var(--fd);font-size:12px;font-weight:700}
+.ep-evol{font-size:12px;color:var(--ink2);background:var(--bg);border-radius:var(--r);padding:.6rem .75rem;font-family:monospace;line-height:1.5}
+.ep-exante-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.5rem}
+.ep-exante-chip{display:inline-flex;flex-direction:column;align-items:center;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:4px 10px;min-width:60px}
+.ep-exante-yr{font-size:10px;color:var(--ink3);margin-bottom:2px}
+.ep-exante-val{font-size:11px;font-weight:600}
+.ep-exante-ok{color:#1D7D5A}.ep-exante-ot{color:#993C1D}.ep-exante-na{color:var(--ink3)}
+.ep-pnom{font-family:var(--fd);font-size:.9rem;font-weight:700;color:var(--ink)}
+.ep-comentario{font-size:12px;color:var(--ink3);font-style:italic;margin-top:.5rem;padding:.5rem .75rem;background:var(--bg);border-radius:var(--r);border-left:2px solid var(--border2)}
+/* EX ANTE */
+.ea-none{padding:1.5rem;background:var(--bg);border:1px dashed var(--border2);border-radius:var(--r);font-size:13px;color:var(--ink3);text-align:center}
+.ea-table{width:100%;border-collapse:collapse;font-size:13px}
+.ea-table th{font-family:var(--fd);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);text-align:left;padding:.5rem .75rem;border-bottom:1px solid var(--border2);background:var(--bg)}
+.ea-table td{padding:.55rem .75rem;border-bottom:1px solid var(--border);vertical-align:middle}
+.ea-table tr:last-child td{border-bottom:none}.ea-table tr:hover td{background:var(--bg)}
+.ea-rf{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;background:#D6EEE4;color:#0F6E56}
+.ea-ot{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;background:#FAE0D6;color:#993C1D}
+.ea-tipo{display:inline-block;font-size:11px;padding:2px 7px;border-radius:20px;background:var(--bg);color:var(--ink3);border:1px solid var(--border)}
+.ea-summary{display:flex;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.ea-sum-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:.6rem 1rem;text-align:center;min-width:80px}
+.ea-sum-n{font-family:var(--fd);font-size:1.3rem;font-weight:700;color:var(--ink)}
+.ea-sum-l{font-size:11px;color:var(--ink3);margin-top:1px}
+/* REGIÓN */
+.reg-wrap{display:grid;grid-template-columns:200px 1fr;gap:1.5rem;align-items:start}
+.reg-map-wrap{position:sticky;top:70px}
+.reg-path{fill:#EAE6DF;stroke:#fff;stroke-width:1.2;cursor:pointer;transition:fill .15s}
+.reg-path:hover{stroke:#C8501A;stroke-width:2}
+.reg-path.hl{fill:var(--a1)!important;stroke:#fff;stroke-width:1.2}
+.reg-table{width:100%;border-collapse:collapse;font-size:13px}
+.reg-table th{font-family:var(--fd);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);text-align:left;padding:.5rem .75rem;border-bottom:1px solid var(--border2);background:var(--bg)}
+.reg-table td{padding:.48rem .75rem;border-bottom:1px solid var(--border)}
+.reg-table tr:last-child td{border-bottom:none}
+.reg-table tr.hl-row td{background:#FEF6F2;font-weight:500}
+.reg-bar-bg{flex:1;height:5px;background:var(--border);border-radius:3px;min-width:50px}
+.reg-bar-fill{height:5px;border-radius:3px;background:var(--a1)}
+.reg-bar-row{display:flex;align-items:center;gap:.4rem}
+.reg-source{font-size:11px;color:var(--ink3);margin-top:.75rem;text-align:right;font-style:italic}
+.reg-total-lbl{font-family:var(--fd);font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.75rem}
+.reg-none{padding:1.5rem;background:var(--bg);border:1px dashed var(--border2);border-radius:var(--r);font-size:13px;color:var(--ink3);text-align:center}
+/* OBSERVACIONES */
+.obs-none{padding:1.5rem;background:var(--bg);border:1px dashed var(--border2);border-radius:var(--r);font-size:13px;color:var(--ink3);text-align:center}
+.obs-card{border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:.75rem}
+.obs-card-hdr{display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem;background:var(--bg)}
+.obs-tipo-badge{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;flex-shrink:0}
+.obs-t-indicadores{background:#E8F0FB;color:#2E5FA3}
+.obs-t-presupuesto{background:#E8F5EE;color:#1D7D5A}
+.obs-t-poblacion{background:#FEF3D6;color:#8A5A00}
+.obs-t-estrategia{background:#F0EBF8;color:#5A3A8E}
+.obs-t-otro{background:#F1EFE8;color:var(--ink3)}
+.obs-t-general{background:#FAE0D6;color:#993C1D}
+.obs-card-body{padding:.75rem 1rem;font-size:13px;color:var(--ink2);line-height:1.65;white-space:pre-wrap;word-break:break-word}
+.obs-count{display:inline-block;font-family:var(--fd);font-size:11px;font-weight:700;background:var(--bg-dark);color:#F4F1EB;border-radius:20px;padding:1px 7px;margin-left:4px}
+
+/* INDICADORES */
+.ind-section{margin-bottom:2rem}
+.ind-section-title{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);padding:.5rem 0;border-bottom:2px solid var(--border2);margin-bottom:1rem}
+.ind-section-title.ip{border-bottom-color:var(--a2)}
+.ind-section-title.ic{border-bottom-color:var(--a3)}
+.ind-card{border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:.75rem}
+.ind-card-hdr{background:var(--bg);padding:.75rem 1rem;display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;user-select:none}
+.ind-card-hdr:hover{background:#EDEAE4}
+.ind-num{font-family:var(--fd);font-size:11px;font-weight:700;color:#fff;background:var(--a2);border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.ind-num.ic{background:var(--a3)}
+.ind-name{font-size:13px;font-weight:600;color:var(--ink);flex:1;line-height:1.4}
+.ind-dim{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;background:#E8F0FB;color:var(--a2);flex-shrink:0;margin-top:2px;white-space:nowrap}
+.ind-dim.eficiencia{background:#E8F5EE;color:var(--a3)}
+.ind-dim.calidad{background:#F0EBF8;color:#5A3A8E}
+.ind-arr{font-size:9px;color:var(--ink3);flex-shrink:0;margin-top:5px;transition:transform .2s}
+.ind-card-hdr.open .ind-arr{transform:rotate(180deg)}
+.ind-card-body{display:none;padding:.75rem 1rem;border-top:1px solid var(--border)}
+.ind-card-hdr.open+.ind-card-body{display:block}
+.ind-meta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:.75rem}
+.ind-meta{font-size:11px;color:var(--ink3)}
+.ind-meta strong{color:var(--ink2)}
+.ind-result-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:.75rem}
+.ind-res-cell{background:var(--bg-card);padding:.65rem .85rem;text-align:center}
+.ind-res-yr{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
+.ind-res-val{font-family:var(--fd);font-size:.95rem;font-weight:700;color:var(--ink)}
+.ind-res-val.si{color:var(--ink3);font-weight:400;font-size:.8rem}
+.ind-frac{display:flex;align-items:center;gap:.4rem;font-size:12px;color:var(--ink2);margin-bottom:.75rem;flex-wrap:wrap}
+.ind-frac-num{text-align:center;padding:.2rem 0}
+.ind-frac-line{width:100%;height:1px;background:var(--ink2);margin:.15rem 0}
+.ind-frac-den{text-align:center;padding:.2rem 0}
+.ind-frac-eq{font-family:var(--fd);font-weight:700;font-size:1rem}
+.ind-nota{font-size:12px;color:var(--ink2);background:var(--bg);border-radius:var(--r);padding:.6rem .75rem;line-height:1.55;margin-bottom:.5rem;white-space:pre-wrap;word-break:break-word}
+.ind-just{font-size:12px;color:var(--ink3);font-style:italic;padding:.5rem .75rem;border-left:2px solid var(--border2);margin-bottom:.5rem}
+.ind-none{padding:1.5rem;background:var(--bg);border:1px dashed var(--border2);border-radius:var(--r);font-size:13px;color:var(--ink3);text-align:center}
+@media(max-width:700px){
+  .hdr,.main{padding-left:1.25rem;padding-right:1.25rem}
+  .ley-wrap{grid-template-columns:1fr}.tree-nav{position:static;max-height:none}
+  .reg-wrap{grid-template-columns:1fr}.reg-map-wrap{position:static}
+}
+
+.nota-caso {
+  background: rgba(6,20,83,0.08);
+  border-left: 3px solid #061453;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+.nota-caso strong { color: var(--ink); }
+</style>
+</head>
+<body>
+<header class="hdr">
+    <nav class="nav-min" style="display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(6,20,83,0.04);border-bottom:1px solid rgba(6,20,83,0.15);margin-bottom:16px;">
+    <a href="index.html" style="display:inline-block;padding:6px 14px;font-size:14px;font-family:inherit;color:#fff;background:#061453;border:1px solid #061453;border-radius:4px;text-decoration:none;">← Índice</a>
+    <label style="font-size:13px;color:#fff;margin-left:auto;">Ir a otro ministerio: </label>
+    <select onchange="if(this.value)location.href=this.value" style="padding:6px 10px;font-size:14px;font-family:inherit;color:#FDFBF8;background:rgba(6,20,83,0.15);border:1px solid #FDFBF8;border-radius:4px;">
+        <option value="oferta_05.html">Ministerio del Interior</option>
+        <option value="oferta_06.html">Ministerio de Relaciones Exteriores</option>
+        <option value="oferta_07.html">Ministerio de Economía, Fomento y Turismo</option>
+        <option value="oferta_08.html">Ministerio de Hacienda</option>
+        <option value="oferta_09.html">Ministerio de Educación</option>
+        <option value="oferta_10.html">Ministerio de Justicia y Derechos Humanos</option>
+        <option value="oferta_12.html">Ministerio de Obras Públicas</option>
+        <option value="oferta_13.html">Ministerio de Agricultura</option>
+        <option value="oferta_14.html" selected>Ministerio de Bienes Nacionales</option>
+        <option value="oferta_15.html">Ministerio del Trabajo y Previsión Social</option>
+        <option value="oferta_16.html">Ministerio de Salud</option>
+        <option value="oferta_17.html">Ministerio de Minería</option>
+        <option value="oferta_18.html">Ministerio de Vivienda y Urbanismo</option>
+        <option value="oferta_19.html">Ministerio de Transporte y Telecomunicaciones</option>
+        <option value="oferta_20.html">Ministerio Secretaría General de Gobierno</option>
+        <option value="oferta_21.html">Ministerio de Desarrollo Social y Familia</option>
+        <option value="oferta_24.html">Ministerio de Energía</option>
+        <option value="oferta_25.html">Ministerio del Medio Ambiente</option>
+        <option value="oferta_26.html">Ministerio del Deporte</option>
+        <option value="oferta_27.html">Ministerio de la Mujer y la Equidad de Género</option>
+        <option value="oferta_29.html">Ministerio de las Culturas, las  Artes y el Patrimonio</option>
+        <option value="oferta_30.html">Ministerio de Ciencia, Tecnología, Conocimiento e Innovación</option>
+        <option value="oferta_32.html">Ministerio de Seguridad Pública</option>
+    </select>
+  </nav>
+<div class="hdr-eye">Consulta de programas y asignaciones presupuestarias - v1.0</div>
+  <h1>Ministerio de <em>Bienes Nacionales</em><br></h1>
+  <p class="hdr-sub">Navegación cruzada entre la ley de presupuestos y la oferta programática del servicio.</p>
+  <div class="hdr-stats">
+      <div><div class="hs-v"><span id="stat-caps">0</span> <em>cap.</em></div><div class="hs-l">Capítulos</div></div>
+      <div><div class="hs-v"><span id="stat-progs-pres">0</span> <em>prog.</em></div><div class="hs-l">Presupuestarios</div></div>
+      <div><div class="hs-v" id="stat-total-bips">0</div><div class="hs-l">Programas BIPS</div></div>
+      <div><div class="hs-v" id="stat-con-asig">0</div><div class="hs-l">Con asignación identificada</div></div>
+    </div>
+</header>
+<nav class="nav">
+  <button class="ntab active" onclick="showTab('ley',this)">Ley de Presupuestos 2026</button>
+  <button class="ntab" onclick="showTab('programas',this)">Oferta Programática</button>
+</nav>
+<main class="main">
+<div id="panel-ley" class="panel active">
+  <div class="note">Navega por la Ley de Presupuestos 2026. Haz click en una asignación para ver los programas BIPS vinculados. <strong>Cifras en miles de pesos (M$).</strong></div>
+  <div class="ley-wrap">
+    <nav class="tree-nav" id="tree-nav"></nav>
+    <div id="det-wrap"><div class="det-placeholder">Selecciona un programa presupuestario del panel izquierdo</div></div>
+  </div>
+</div>
+<div id="panel-programas" class="panel">
+  <div class="note">Haz click en un programa para ver su ficha completa. <strong>Cifras en miles de pesos (M$).</strong></div>
+  <div class="sbar"><input type="text" class="sinput" id="psearch" placeholder="Buscar por nombre o ID BIPS..." oninput="filterProgs()"></div>
+    <div class="fbtns">
+    <button class="fbtn active" id="pf-all" onclick="setPF('all',this)">Todos</button>
+    <button class="fbtn" onclick="setPF('sub1',this)">Subse. Bienes Nac.</button>
+    <button class="fbtn" onclick="setPF('cond0',this)">Sin observaciones</button>
+    <button class="fbtn" onclick="setPF('cond1',this)">Rebajar presupuesto</button>
+    <button class="fbtn" onclick="setPF('cond2',this)">Descontinuar</button>
+    <button class="fbtn" onclick="setPF('flags',this)">Con hallazgos</button>
+  </div>
+  <div id = "conteo-resumen" style = "padding: 10px 8px; font-size: 13px; color: var(--ink2); border-bottom: 1px solid #eee; margin-bottom: 10px; font-weight: 600;">
+    Cargando programas...
+  </div>
+  <div id="prog-list"></div>
+  <div id="ficha-wrap" style="display:none"></div>
+</div>
+
+</main>
+<script>
+
+const TREE    = [{"id": 1, "nombre": "Subsecretar\u00eda de Bienes Nacionales", "programas": [{"id": 1, "nombre": "Subsecretar\u00eda de Bienes Nacionales", "monto": 47206767, "subtitulos": [{"id": 5, "nombre": "TRANSFERENCIAS CORRIENTES", "monto": 10, "items": [{"id": 2, "nombre": "Del Gobierno Central", "monto": 10, "asigs": [{"id": 201, "id_pres": "14-01-01-05-02-201", "nombre": "Recuperaci\u00f3n de Licencias M\u00e9dicas - FONASA", "monto": 10, "bips": []}]}]}, {"id": 6, "nombre": "RENTAS DE LA PROPIEDAD", "monto": 7300196, "items": []}, {"id": 8, "nombre": "OTROS INGRESOS CORRIENTES", "monto": 1949311, "items": [{"id": 1, "nombre": "Recuperaciones y Reembolsos por Licencias M\u00e9dicas", "monto": 1949301, "asigs": []}, {"id": 99, "nombre": "Otros", "monto": 10, "asigs": []}]}, {"id": 9, "nombre": "APORTE FISCAL", "monto": 8595084, "items": [{"id": 1, "nombre": "Libre", "monto": 8595084, "asigs": []}]}, {"id": 15, "nombre": "SALDO INICIAL DE CAJA", "monto": 10, "items": []}, {"id": 21, "nombre": "GASTOS EN PERSONAL", "monto": 12883247, "items": []}, {"id": 22, "nombre": "BIENES Y SERVICIOS DE CONSUMO", "monto": 3988234, "items": []}, {"id": 23, "nombre": "PRESTACIONES DE SEGURIDAD SOCIAL", "monto": 10, "items": [{"id": 3, "nombre": "Prestaciones Sociales del Empleador", "monto": 10, "asigs": []}]}, {"id": 25, "nombre": "INTEGROS AL FISCO", "monto": 400879, "items": [{"id": 99, "nombre": "Otros Integros al Fisco", "monto": 400879, "asigs": []}]}, {"id": 29, "nombre": "ADQUISICI\u00d3N DE ACTIVOS NO FINANCIEROS", "monto": 572231, "items": [{"id": 4, "nombre": "Mobiliario y Otros", "monto": 10310, "asigs": []}, {"id": 5, "nombre": "M\u00e1quinas y Equipos", "monto": 20620, "asigs": []}, {"id": 6, "nombre": "Equipos Inform\u00e1ticos", "monto": 16161, "asigs": []}, {"id": 7, "nombre": "Programas Inform\u00e1ticos", "monto": 525140, "asigs": []}]}, {"id": 34, "nombre": "SERVICIO DE LA DEUDA", "monto": 10, "items": [{"id": 7, "nombre": "Deuda Flotante", "monto": 10, "asigs": []}]}]}, {"id": 3, "nombre": "Regularizaci\u00f3n de la Propiedad Ra\u00edz", "monto": 8677008, "subtitulos": [{"id": 6, "nombre": "RENTAS DE LA PROPIEDAD", "monto": 3790015, "items": []}, {"id": 8, "nombre": "OTROS INGRESOS CORRIENTES", "monto": 10, "items": [{"id": 1, "nombre": "Recuperaciones y Reembolsos por Licencias M\u00e9dicas", "monto": 10, "asigs": []}]}, {"id": 9, "nombre": "APORTE FISCAL", "monto": 362980, "items": [{"id": 1, "nombre": "Libre", "monto": 362980, "asigs": []}]}, {"id": 15, "nombre": "SALDO INICIAL DE CAJA", "monto": 10, "items": []}, {"id": 21, "nombre": "GASTOS EN PERSONAL", "monto": 2599837, "items": []}, {"id": 22, "nombre": "BIENES Y SERVICIOS DE CONSUMO", "monto": 1545190, "items": []}, {"id": 23, "nombre": "PRESTACIONES DE SEGURIDAD SOCIAL", "monto": 10, "items": [{"id": 3, "nombre": "Prestaciones Sociales del Empleador", "monto": 10, "asigs": []}]}, {"id": 26, "nombre": "OTROS GASTOS CORRIENTES", "monto": 7968, "items": [{"id": 1, "nombre": "Devoluciones", "monto": 7968, "asigs": []}]}, {"id": 34, "nombre": "SERVICIO DE LA DEUDA", "monto": 10, "items": [{"id": 7, "nombre": "Deuda Flotante", "monto": 10, "asigs": []}]}]}, {"id": 4, "nombre": "Administraci\u00f3n de Bienes", "monto": 106869622, "subtitulos": [{"id": 5, "nombre": "TRANSFERENCIAS CORRIENTES", "monto": 574493, "items": [{"id": 2, "nombre": "Del Gobierno Central", "monto": 574493, "asigs": [{"id": 1, "id_pres": "14-01-04-05-02-001", "nombre": "Corporaci\u00f3n Nacional de Desarrollo Ind\u00edgena", "monto": 574493, "bips": []}]}]}, {"id": 6, "nombre": "RENTAS DE LA PROPIEDAD", "monto": 26182112, "items": []}, {"id": 8, "nombre": "OTROS INGRESOS CORRIENTES", "monto": 676585, "items": [{"id": 99, "nombre": "Otros", "monto": 676585, "asigs": []}]}, {"id": 9, "nombre": "APORTE FISCAL", "monto": 2816, "items": [{"id": 1, "nombre": "Libre", "monto": 2816, "asigs": []}]}, {"id": 10, "nombre": "VENTA DE ACTIVOS NO FINANCIEROS", "monto": 8058402, "items": [{"id": 1, "nombre": "Terrenos", "monto": 8058402, "asigs": []}]}, {"id": 12, "nombre": "RECUPERACI\u00d3N DE PR\u00c9STAMOS", "monto": 87865, "items": [{"id": 9, "nombre": "Por Ventas a Plazo", "monto": 87865, "asigs": []}]}, {"id": 15, "nombre": "SALDO INICIAL DE CAJA", "monto": 10, "items": []}, {"id": 21, "nombre": "GASTOS EN PERSONAL", "monto": 6463060, "items": []}, {"id": 22, "nombre": "BIENES Y SERVICIOS DE CONSUMO", "monto": 4476429, "items": []}, {"id": 23, "nombre": "PRESTACIONES DE SEGURIDAD SOCIAL", "monto": 10, "items": [{"id": 3, "nombre": "Prestaciones Sociales del Empleador", "monto": 10, "asigs": []}]}, {"id": 24, "nombre": "TRANSFERENCIAS CORRIENTES", "monto": 1087608, "items": [{"id": 9, "nombre": "A Unidades o Programas del Servicio", "monto": 1087608, "asigs": [{"id": 5, "id_pres": "14-01-04-24-09-005", "nombre": "Puesta en Valor del Territorio Fiscal", "monto": 50000, "bips": [{"id_bips": 87299, "nombre": "Programa Puesta en Valor del Territorio Fiscal para el Desarrollo de Proyectos Energ\u00e9ticos", "servicio": "Subsecretar\u00eda Bienes Nacionales"}]}, {"id": 9, "id_pres": "14-01-04-24-09-009", "nombre": "Recuperaci\u00f3n y Fortalecimiento de Rutas Patrimoniales", "monto": 53715, "bips": [{"id_bips": 87298, "nombre": "Recuperaci\u00f3n y Fortalecimiento de la Colecci\u00f3n de Rutas Patrimoniales para Garantizar su Administraci\u00f3n y Sustentabilidad", "servicio": "Subsecretar\u00eda Bienes Nacionales"}]}, {"id": 10, "id_pres": "14-01-04-24-09-010", "nombre": "Plan de Gesti\u00f3n Territorial Regional", "monto": 188840, "bips": [{"id_bips": 87301, "nombre": "Plan de Gesti\u00f3n Territorial Regional (PGTR)", "servicio": "Subsecretar\u00eda Bienes Nacionales"}]}, {"id": 14, "id_pres": "14-01-04-24-09-014", "nombre": "Gesti\u00f3n y normalizaci\u00f3n de ocupaciones ilegales e irregulares en inmuebles fiscales", "monto": 220560, "bips": [{"id_bips": 87297, "nombre": "Gesti\u00f3n y Normalizaci\u00f3n de Ocupaciones Irregulares en Inmuebles Fiscales", "servicio": "Subsecretar\u00eda Bienes Nacionales"}]}, {"id": 16, "id_pres": "14-01-04-24-09-016", "nombre": "Regularizaci\u00f3n de t\u00edtulos de dominio y gesti\u00f3n de la propiedad fiscal asociada a Pueblos Ind\u00edgenas", "monto": 574493, "bips": [{"id_bips": 87302, "nombre": "Regularizaci\u00f3n de t\u00edtulos de dominio y gesti\u00f3n de la propiedad fiscal asociada a Pueblos Ind\u00edgenas", "servicio": "Subsecretar\u00eda Bienes Nacionales"}]}]}]}, {"id": 25, "nombre": "INTEGROS AL FISCO", "monto": 22738590, "items": [{"id": 99, "nombre": "Otros Integros al Fisco", "monto": 22738590, "asigs": []}]}, {"id": 26, "nombre": "OTROS GASTOS CORRIENTES", "monto": 197966, "items": [{"id": 1, "nombre": "Devoluciones", "monto": 197966, "asigs": []}]}, {"id": 29, "nombre": "ADQUISICI\u00d3N DE ACTIVOS NO FINANCIEROS", "monto": 618610, "items": [{"id": 1, "nombre": "Terrenos", "monto": 618610, "asigs": []}]}, {"id": 34, "nombre": "SERVICIO DE LA DEUDA", "monto": 10, "items": [{"id": 7, "nombre": "Deuda Flotante", "monto": 10, "asigs": []}]}]}, {"id": 5, "nombre": "Catastro", "monto": 8697169, "subtitulos": [{"id": 6, "nombre": "RENTAS DE LA PROPIEDAD", "monto": 3550193, "items": []}, {"id": 9, "nombre": "APORTE FISCAL", "monto": 473137, "items": [{"id": 1, "nombre": "Libre", "monto": 473137, "asigs": []}]}, {"id": 15, "nombre": "SALDO INICIAL DE CAJA", "monto": 10, "items": []}, {"id": 21, "nombre": "GASTOS EN PERSONAL", "monto": 3561050, "items": []}, {"id": 22, "nombre": "BIENES Y SERVICIOS DE CONSUMO", "monto": 284938, "items": []}, {"id": 23, "nombre": "PRESTACIONES DE SEGURIDAD SOCIAL", "monto": 10, "items": [{"id": 3, "nombre": "Prestaciones Sociales del Empleador", "monto": 10, "asigs": []}]}, {"id": 29, "nombre": "ADQUISICI\u00d3N DE ACTIVOS NO FINANCIEROS", "monto": 177332, "items": [{"id": 5, "nombre": "M\u00e1quinas y Equipos", "monto": 177332, "asigs": []}]}, {"id": 34, "nombre": "SERVICIO DE LA DEUDA", "monto": 10, "items": [{"id": 7, "nombre": "Deuda Flotante", "monto": 10, "asigs": []}]}]}]}];
+const BIPS    = [{"id_bips": 87297, "nombre": "Gesti\u00f3n y Normalizaci\u00f3n de Ocupaciones Irregulares en Inmuebles Fiscales", "servicio": "SUBSECRETAR\u00cdA DE BIENES NACIONALES", "partida": "14", "nombre_ministerio": "MINISTERIO DE BIENES NACIONALES", "gasto_2025": 1044432898, "estado": "Rebajar presupuesto", "pob": 3842, "unidad": "Unidades", "link_monitoreo": "https://evaluacionymonitoreosesdipres.gob.cl/Reportes/EvaluacionMonitoreo2026?_id=RPgzsjbccSOkOw6ZEcORwQ%3D%3D", "year_inicio": 2014, "tipo_oferta": "No Social", "ejec_ext": "", "n_ejec": 0, "tipos_ejec": "", "problema": "El principal problema p\u00fablico que el programa abordar\u00e1 son las ocupaciones ilegales e\n\nirregulares en inmuebles fiscales, entendiendo como ilegal la tenencia total o parcial de una\n\npersona natural o jur\u00eddica de un inmueble, sin que mediare una autorizaci\u00f3n, concesi\u00f3n o\n\ncontrato originado en conformidad a las disposiciones del D.L. 1939/77 o de otras leyes\n\nespeciales. Por su parte, en la irregular el ocupante lleg\u00f3 leg\u00edtimamente a usar y gozar de un\n\ndeterminado inmueble, pero el acto administrativo que amparaba su ocupaci\u00f3n dej\u00f3 de\n\nproducir efectos por vencimiento o caducidad, no siendo restituido dicho bien ra\u00edz al Fisco.\n\nEstas generan importantes perjuicios: desvalorizaci\u00f3n de los inmuebles; p\u00e9rdidas de ingresos\n\necon\u00f3micos al Fisco; p\u00e9rdida de mejores alternativas de utilizaci\u00f3n de los inmuebles para fines\n\nsociales, productivos, etc.; desarrollo territorial al margen de normativas urban\u00edsticas; riesgo\n\npara la seguridad de las personas, en el caso de las ocupaciones en zonas de riesgo.", "proposito": "Contener el incremento de ocupaciones ilegales e irregulares en inmuebles fiscales en el pa\u00eds.", "descripcion": "Esta iniciativa se inici\u00f3 el a\u00f1o 2014 y consiste en reducir el n\u00famero de ocupaciones ilegales e irregulares en propiedades fiscales detectadas mediante la gesti\u00f3n y/o normalizaci\u00f3n de ellos, dotando de recursos t\u00e9cnicos y financieros a las SEREMIS y Nivel Central, para ampliar sus capacidades operativas. Por normalizaci\u00f3n se entiende resolver la ocupaci\u00f3n mediante la dictaci\u00f3n de un acto administrativo acorde al D.L. N\u00b0 1.939/77, es decir, arriendo, concesi\u00f3n de uso, destinaci\u00f3n, venta directa, acta de radicaci\u00f3n, etc., se incluye la constataci\u00f3n de la desocupaci\u00f3n del bien fiscal. Por gesti\u00f3n, se entiende el env\u00edo de los antecedentes para restituci\u00f3n tanto al Consejo de Defensa del Estado como la Delegaci\u00f3n Presidencial respectiva. Tambi\u00e9n se considera el env\u00edo de los antecedentes al SERVIU / MINVU para la normalizaci\u00f3n de las ocupaciones ilegales en propiedad fiscal vinculadas a campamentos habitacionales. Los \u00e9nfasis de las acciones estar\u00e1n dados por los siguientes ejes de acci\u00f3n Ministerial 2022 \u2013 2026: suelo para reducir d\u00e9ficit habitacional; fortalecer los usos sociales y comunitarios del patrimonio fiscal; gesti\u00f3n territorial para la reactivaci\u00f3n y desarrollo econ\u00f3mico.", "asignaciones": [{"id_pres": "14-01-04-24-09-014", "denominacion": "Gesti\u00f3n y normalizaci\u00f3n de ocupaciones ilegales e irregulares en inmuebles fiscales", "monto": 220560, "cap_nom": "Subsecretar\u00eda de Bienes Nacionales", "prog_nom": "Administraci\u00f3n de Bienes"}], "monitoreo": {"Hallazgo Focalizaci\u00f3n": 0, "Hallazgo Ejec inicial": 0, "Hallazgo Eje final": 0, "Hallazgo Persistencia": 0, "Hallazgo GB": 0, "Hallazgo No reporte GA": 0, "Hallazgo Persistencia GA": 0, "Hallazgo Ind no pertinente": 1, "Hallazgo Resultado 2025": 0, "Hallazgo Persistencia IP": 0, "Condicionar Comisi\u00f3n_1": 0, "Tres a\u00f1os disminuci\u00f3n indicador": 0, "Programas OT": 0, "Eval 2026 sin calificaci\u00f3n (Rebajar)": 0, "Evaluaciones expost tres a\u00f1os Mal desempe\u00f1o": 0, "No reporta RIS": 0}, "total_flags": 1, "observaciones": [{"tipo": "Poblaci\u00f3n", "texto": "Poblaci\u00f3n Potencial- Cuantificaci\u00f3n: Corresponde a la del a\u00f1o t-1 m\u00e1s un porcentaje promedio de crecimiento en el tiempo, la que se estima podr\u00eda llegar a las 32.000 ocupaciones. -\u00a0 FUENTE: La poblaci\u00f3n potencial corresponde tanto a lo detectado en a\u00f1os anteriores como en el a\u00f1o en curso, en consecuencia, se debe generar una proyecci\u00f3n a partir del dato obtenido el a\u00f1o anterior. Se estima que la poblaci\u00f3n potencial total para el a\u00f1o 2025\u00a0podr\u00eda llegar a ser de 32.000 ocupaciones aproximadamente. Esta informaci\u00f3n, corresponde a lo declarado a\u00f1o a a\u00f1o por las Secretar\u00edas Regionales Ministeriales de Bienes Nacionales a nivel pa\u00eds."}, {"tipo": "Poblaci\u00f3n", "texto": "Poblaci\u00f3n Objetivo- Cuantificaci\u00f3n: 28.806.- FUENTE: Corresponde a las declaraciones realizadas por cada una de las regiones respecto del n\u00famero de ocupaciones detectadas al 31 de diciembre de cada a\u00f1o. En esta caso, corresponde la declaraci\u00f3n al 31 de diciembre de 2024 (28.806 ocupaciones declaradas)"}, {"tipo": "Indicadores", "texto": "Indicadores- Indicadores de Prop\u00f3sito- Nota metodol\u00f3gica: Se debe cambiar la parte final del p\u00e1rrafo por \" 31 de diciembre de 2024\""}], "expost": {"tiene": false, "a\u00f1o": null, "nombre_eval": null, "linea": null, "calificacion": null, "presupuesto_nominal": null, "link_informe": null, "link_seguimiento": null, "conclusiones": {"dise\u00f1o": null, "implementacion": null, "eficiencia": null, "eficacia": null}, "recomendaciones": {"dise\u00f1o": null, "implementacion": null, "eficiencia": null, "eficacia": null}, "compromisos": [], "calificacion_compromisos": null, "gasto_ejecutado": {}, "evolucion_gasto": null, "evolucion_ppto": null, "evolucion_ratios": null, "evolucion_calificaciones": null, "exante": {}, "evolucion_exante": null, "comentario": null}, "exante_hist": [{"periodo": 2023, "tipo": "Reformulado", "resultado": "Recomendado Favorablemente"}, {"periodo": 2026, "tipo": "Reformulado", "resultado": "Recomendado favorablemente"}], "region_data": {"Arica y Parinacota": 309, "Tarapac\u00e1": 337, "Antofagasta": 860, "Atacama": 870, "Coquimbo": 323, "Valpara\u00edso": 201, "Metropolitana": 174, "O'Higgins": 78, "Maule": 30, "\u00d1uble": 31, "Biob\u00edo": 314, "La Araucan\u00eda": 57, "Los R\u00edos": 183, "Los Lagos": 46, "Ays\u00e9n": 24, "Magallanes": 5}}, {"id_bips": 87301, "nombre": "Plan de Gesti\u00f3n Territorial Regional (PGTR)", "servicio": "SUBSECRETAR\u00cdA DE BIENES NACIONALES", "partida": "14", "nombre_ministerio": "MINISTERIO DE BIENES NACIONALES", "gasto_2025": 333457361, "estado": "Sin observaciones", "pob": 208, "unidad": "Unidades", "link_monitoreo": "https://evaluacionymonitoreosesdipres.gob.cl/Reportes/EvaluacionMonitoreo2026?_id=UZmg%2FUU4wSOr%2FRj%2BX%2FY%2BlA%3D%3D", "year_inicio": 2019, "tipo_oferta": "No Social", "ejec_ext": "", "n_ejec": 0, "tipos_ejec": "", "problema": "El Fisco es propietario del 54,35% del territorio nacional, correspondiente a m\u00e1s de 30 mil inmuebles. El principal problema que el programa espera abordar es la alta proporci\u00f3n de inmuebles fiscales sin uso o administraci\u00f3n efectiva (aproximadamente un tercio), lo cual obstaculiza el desarrollo de los territorios y las regiones, especialmente cuando la implementaci\u00f3n de las pol\u00edticas p\u00fablicas y de iniciativas de inversi\u00f3n para el desarrollo, dependen de la acci\u00f3n y gesti\u00f3n de la propiedad fiscal.", "proposito": "Inmuebles fiscales pasan a administraci\u00f3n efectiva a trav\u00e9s de licitaci\u00f3n y/o asignaci\u00f3n directa.", "descripcion": "El Programa busca contribuir a la gesti\u00f3n eficaz, eficiente, ordenada y transparente del patrimonio fiscal para promover el desarrollo sustentable de cada una de las regiones del pa\u00eds y fortalecer la gesti\u00f3n del banco de suelo p\u00fablico multiprop\u00f3sito, con \u00e9nfasis en 5 ejes transversales:\n\n1.\tReactivaci\u00f3n y desarrollo econ\u00f3mico\n\n2.\tReducci\u00f3n del d\u00e9ficit habitacional\n\n3.\tFortalecimiento de usos sociales y comunitarios del patrimonio fiscal\n\n4.\tBienes y patrimonio fiscal para promoci\u00f3n de Derechos Humanos y Memoria Hist\u00f3rica\n\n5.\tAmpliaci\u00f3n y fortalecimiento de la protecci\u00f3n y acceso al patrimonio natural\n\nEn este marco, se identificar\u00e1 y caracterizar\u00e1 la demanda regional de suelo fiscal respecto de necesidades relevadas a nivel local, regional y nacional para pasar luego a conformar un portafolio amplio de inmuebles fiscales, por cada regi\u00f3n, para responder a dicha demanda. Ello a trav\u00e9s de la definici\u00f3n coordinada de criterios de selecci\u00f3n que se ajusten a los 5 ejes transversales que gu\u00edan la gesti\u00f3n del programa, y que permitan avanzar en el desarrollo sostenible de las regiones y el pa\u00eds.", "asignaciones": [{"id_pres": "14-01-04-24-09-010", "denominacion": "Plan de Gesti\u00f3n Territorial Regional", "monto": 188840, "cap_nom": "Subsecretar\u00eda de Bienes Nacionales", "prog_nom": "Administraci\u00f3n de Bienes"}], "monitoreo": {"Hallazgo Focalizaci\u00f3n": 0, "Hallazgo Ejec inicial": 0, "Hallazgo Eje final": 0, "Hallazgo Persistencia": 0, "Hallazgo GB": 0, "Hallazgo No reporte GA": 0, "Hallazgo Persistencia GA": 0, "Hallazgo Ind no pertinente": 0, "Hallazgo Resultado 2025": 0, "Hallazgo Persistencia IP": 0, "Condicionar Comisi\u00f3n_1": 0, "Tres a\u00f1os disminuci\u00f3n indicador": 0, "Programas OT": 0, "Eval 2026 sin calificaci\u00f3n (Rebajar)": 0, "Evaluaciones expost tres a\u00f1os Mal desempe\u00f1o": 0, "No reporta RIS": 0}, "total_flags": 0, "observaciones": [{"tipo": "Indicadores", "texto": "En los indicadores de prop\u00f3sito 2023 y 2024, se deben corregir los valores de los denominadores, considerando en ambos casos el valor total de 748 (valor actualizado) de poblaci\u00f3n objetivo de los inmuebles a gestionar dentro del per\u00edodo 2023-2026 en lugar de los valores que se ten\u00edan como meta solamente en los respectivos a\u00f1os (225 cada a\u00f1o)."}, {"tipo": "Presupuesto", "texto": "Durante 2025, considerando el presupuesto del programa (Subt. 24), se ejecutaron $158.074.468, de un total final aprobado de $182.747.733 (86,5%), principalmente por recursos subejecutados que corresponden a los saldos generados por licitaciones adjudicadas por valores menores a los originalmente proyectados."}], "expost": {"tiene": false, "a\u00f1o": null, "nombre_eval": null, "linea": null, "calificacion": null, "presupuesto_nominal": null, "link_informe": null, "link_seguimiento": null, "conclusiones": {"dise\u00f1o": null, "implementacion": null, "eficiencia": null, "eficacia": null}, "recomendaciones": {"dise\u00f1o": null, "implementacion": null, "eficiencia": null, "eficacia": null}, "compromisos": [], "calificacion_compromisos": null, "gasto_ejecutado": {}, "evolucion_gasto": null, "evolucion_ppto": null, "evolucion_ratios": null, "evolucion_calificaciones": null, "exante": {}, "evolucion_exante": null, "comentario": null}, "exante_hist": [{"periodo": 2019, "tipo": "Nuevo", "resultado": "Recomendado Favorablemente"}], "region_data": {"Arica y Parinacota": 11, "Tarapac\u00e1": 37, "Antofagasta": 34, "Atacama": 11, "Coquimbo": 6, "Valpara\u00edso": 14, "Metropolitana": 28, "O'Higgins": 4, "Maule": 12, "\u00d1uble": 3, "Biob\u00edo": 8, "La Araucan\u00eda": 10, "Los R\u00edos": 15, "Los Lagos": 7, "Ays\u00e9n": 3, "Magallanes": 5}}, {"id_bips": 87299, "nombre": "Programa Puesta en Valor del Territorio Fiscal para el Desarrollo de Proyectos Energ\u00e9ticos", "servicio": "SUBSECRETAR\u00cdA DE BIENES NACIONALES", "partida": "14", "nombre_ministerio": "MINISTERIO DE BIENES NACIONALES", "gasto_2025": 247553409, "estado": "Rebajar presupuesto", "pob": 525, "unidad": "Unidades", "link_monitoreo": "https://evaluacionymonitoreosesdipres.gob.cl/Reportes/EvaluacionMonitoreo2026?_id=fAU6%2Bc3s%2FEA2TqUopKfmpA%3D%3D", "year_inicio": 2015, "tipo_oferta": "No Social", "ejec_ext": "", "n_ejec": 0, "tipos_ejec": "", "problema": "Existe una necesidad de parte de empresas por desarrollar proyectos de generaci\u00f3n, l\u00edneas de transmisi\u00f3n, subestaciones y redes de distribuci\u00f3n el\u00e9ctricas, considerando que el crecimiento econ\u00f3mico del pa\u00eds conlleva un aumento de la demanda por energ\u00eda el\u00e9ctrica. Dichos proyectos deben enmarcarse en los objetivos gubernamentales delineados en la Agenda de Energ\u00eda 2022-2026 y compromisos suscritos por el Estado de Chile de transformaci\u00f3n y descarbonizaci\u00f3n de la matriz energ\u00e9tica, por lo cual el desarrollo de proyectos de ERNC, de Hidr\u00f3geno Verde y de almacenamiento son de vital importancia. Dichas necesidades no podr\u00e1n satisfacerse adecuadamente (en t\u00e9rminos econ\u00f3micos, ambientales y de justicia socio ecol\u00f3gica) sin el aprovechamiento de terrenos fiscales, considerando que las regiones con mayores ventajas comparativas para el desarrollo de este tipo de proyectos son las cuatro regiones del extremo norte, que son precisamente las regiones con mayor abundancia de propiedad fiscal.", "proposito": "Empresas y particulares disponen de terrenos fiscales necesarios para desarrollar proyectos de energ\u00edas renovables, sistemas de almacenamiento de energ\u00eda y de hidr\u00f3geno verde y/o sus derivados en terrenos fiscales.", "descripcion": "Este programa se inici\u00f3 el a\u00f1o 2015, y tiene como objetivo que empresas y particulares dispongan de terrenos fiscales necesarios para desarrollar proyectos de generaci\u00f3n, transmisi\u00f3n y distribuci\u00f3n de energ\u00edas renovables principalmente.", "asignaciones": [{"id_pres": "14-01-04-24-09-005", "denominacion": "Puesta en Valor del Territorio Fiscal", "monto": 50000, "cap_nom": "Subsecretar\u00eda de Bienes Nacionales", "prog_nom": "Administraci\u00f3n de Bienes"}], "monitoreo": {"Hallazgo Focalizaci\u00f3n": 1, "Hallazgo Ejec inicial": 0, "Hallazgo Eje final": 1, "Hallazgo Persistencia": 0, "Hallazgo GB": 0, "Hallazgo No reporte GA": 0, "Hallazgo Persistencia GA": 0, "Hallazgo Ind no pertinente": 0, "Hallazgo Resultado 2025": 0, "Hallazgo Persistencia IP": 0, "Condicionar Comisi\u00f3n_1": 0, "Tres a\u00f1os disminuci\u00f3n indicador": 0, "Programas OT": 0, "Eval 2026 sin calificaci\u00f3n (Rebajar)": 0, "Evaluaciones expost tres a\u00f1os Mal desempe\u00f1o": 0, "No reporta RIS": 0}, "total_flags": 2, "observaciones": [{"tipo": "Presupuesto", "texto": "No permite actualizar la Poblaci\u00f3n Potencial ni la Poblaci\u00f3n Objetivo de acuerdo a la situaci\u00f3n del a\u00f1o 2025"}, {"tipo": "Estrategia", "texto": "En la plataforma Dipres aparece el Programa con tres componentes acorde a como fue formulado el a\u00f1o 2023 para el Proyecto de Presupuesto 2024, no obstante, en las Leyes de Presupuesto del a\u00f1o 2024 y 2025, no se asignaron los recursos solicitados para ejecutar el Programa con sus tres componentes, raz\u00f3n por la cual, la producci\u00f3n de los los componentes de Ofetra de inmuebles fiscales y de Fiscalizaci\u00f3n se dej\u00f3 = 0."}, {"tipo": "Presupuesto", "texto": "Observaci\u00f3n Dipres\n\n4.1 Presupuesto Ley: \n\n\u00bfQu\u00e9 factores explicar\u00edan la baja ejecuci\u00f3n presupuestaria del programa en 2025 de un 37% (gatos ejecutado Ley al 4\u00b0 trimestre sobre presupuesto final)? Agregar la explicaci\u00f3n en la secci\u00f3n \u201cObservaciones\u201d (vi\u00f1eta 7)\n\n\n\nR: El presupuesto del programa corresponde a recursos para gastos en personal. El a\u00f1o 2025 se hizo una \u00fanica contrataci\u00f3n bajo la modalidad de Honorarios Suma Alzada (HSA) en la regi\u00f3n de Antofagasta, para labores de apoyo a la tramitaci\u00f3n de expedientes asociados a proyectos de energ\u00eda, pues, la otra persona que estaba contemplada en el programa pas\u00f3 a la contrata. No fue posible ejecutar mayor gasto debido a la indisponibilidad de cupos de la glosa de honorarios del Subt\u00edtulo 24 para contratar m\u00e1s personas, adem\u00e1s de las limitaciones establecidas en el GAB.PRES 001 y el Oficio Circular 7."}, {"tipo": "Otro", "texto": "Observaci\u00f3n Dipres: Si se menciona que el programa contribuye al ODS n\u00b013, se debe marcar dicho ODS\n\nR: La plataforma no permite marcar otro ODS"}], "expost": {"tiene": false, "a\u00f1o": null, "nombre_eval": null, "linea": null, "calificacion": null, "presupuesto_nominal": null, "link_informe": null, "link_seguimiento": null, "conclusiones": {"dise\u00f1o": null, "implementacion": null, "eficiencia": null, "eficacia": null}, "recomendaciones": {"dise\u00f1o": null, "implementacion": null, "eficiencia": null, "eficacia": null}, "compromisos": [], "calificacion_compromisos": null, "gasto_ejecutado": {}, "evolucion_gasto": null, "evolucion_ppto": null, "evolucion_ratios": null, "evolucion_calificaciones": null, "exante": {}, "evolucion_exante": null, "comentario": null}, "exante_hist": [{"periodo": 2025, "tipo": "Reformulado", "resultado": "Recomendado Favorablemente"}], "region_data": {"Arica y Parinacota": 42, "Tarapac\u00e1": 74, "Antofagasta": 307, "Atacama": 90, "Coquimbo": 1, "Valpara\u00edso": 0, "Metropolitana": 2, "O'Higgins": 0, "Maule": 0, "\u00d1uble": 0, "Biob\u00edo": 1, "La Araucan\u00eda": 0, "Los R\u00edos": 0, "Los Lagos": 1, "Ays\u00e9n": 0, "Magallanes": 7}}, {"id_bips": 87296, "nombre": "Programa Regularizaci\u00f3n de la Peque\u00f1a Propiedad Ra\u00edz", "servicio": "SUBSECRETAR\u00cdA DE BIENES NACIONALES", "partida": "14", "nombre_ministerio": "MINISTERIO DE BIENES NACIONALES", "gasto_2025": 8228625447, "estado": "Sin observaciones", "pob": 22419, "unidad": "Personas", "link_monitoreo": "https://evaluacionymonitoreosesdipres.gob.cl/Reportes/EvaluacionMonitoreo2026?_id=3iTYLhecNwMElmBzmDQHeA%3D%3D", "year_inicio": 1979, "tipo_oferta": "No Social", "ejec_ext": "", "n_ejec": 0, "tipos_ejec": "", "problema": "El principal problema p\u00fablico es la incertidumbre jur\u00eddica de personas que poseen inmuebles urbanos y rurales pero que no cuentan con inscripci\u00f3n del dominio a su nombre, por no haber realizado los procedimientos que establece la ley, por desconocimiento en la adquisici\u00f3n de los inmuebles o por no contar con los recursos necesarios para adquirirlos. \n\nLa poblaci\u00f3n afectada es la persona que posee el predio que se encuentra en situaci\u00f3n de irregularidad, y que sufre los efectos de la incertidumbre jur\u00eddica que ello genera. Indicar que la situaci\u00f3n de irregularidad se refiere al inmueble no a la persona, \u00e9sta \u00faltima se beneficia del cambio de estado de irregular a regular.", "proposito": "Postulantes la Ley 19.766, T\u00edtulos Gratuito y Saneamientos (DL 2.695) reciben sus t\u00edtulos y cuentan con certidumbre jur\u00eddica, permiti\u00e9ndoles la oportuna postulaci\u00f3n a beneficios estatales y particulares.", "descripcion": "Este programa se inici\u00f3 el a\u00f1o 1979 y tiene como objetivo que las personas que realizan solicitudes de saneamientos (D.L. N\u00b0 2.695), t\u00edtulos gratuitos (D.L. N\u00b0 1.939) y ley del sur (Ley N\u00b0 19.766) reciban sus t\u00edtulos de dominio y cuenten con certidumbre jur\u00eddica, permiti\u00e9ndoles la oportuna postulaci\u00f3n a beneficios estatales y particulares. Para ello, el programa tramita solicitudes de regularizaci\u00f3n para la peque\u00f1a propiedad particular y fiscal.", "asignaciones": [{"id_pres": "14-01-03-00-00-000", "denominacion": "14-01-03-00-00-000", "monto": 0, "cap_nom": "", "prog_nom": ""}], "monitoreo": {"Hallazgo Focalizaci\u00f3n": 0, "Hallazgo Ejec inicial": 0, "Hallazgo Eje final": 0, "Hallazgo Persistencia": 0, "Hallazgo GB": 0, "Hallazgo No reporte GA": 0, "Hallazgo Persistencia GA": 0, "Hallazgo Ind no pertinente": 0, "Hallazgo Resultado 2025": 0, "Hallazgo Persistencia IP": 0, "Condicionar Comisi\u00f3n_1": 0, "Tres a\u00f1os disminuci\u00f3n indicador": 0, "Programas OT": 0, "Eval 2026 sin calificaci\u00f3n (Rebajar)": 0, "Evaluaciones expost tres a\u00f1os Mal desempe\u00f1o": 0, "No reporta RIS": 0}, "total_flags": 0, "observaciones": [{"tipo": "Poblaci\u00f3n", "texto": "No se visualiza en \"Cobertura\" los datos pre cargados, se visualiza \"ingrese dato\", pero no es posible editar el campo."}, {"tipo": "Estrategia", "texto": "Componente 1: no se visualiza la actualizaci\u00f3n de la Resoluci\u00f3n de Cobro enviada en pre monitoreo, no corresponde la 2459/2017 sino que la 700/2023."}, {"tipo": "Indicadores", "texto": "En el indicador de prop\u00f3sito no se visualiza el efectivo 2024, ni tampoco permite editar el campo."}, {"tipo": "Presupuesto", "texto": "No est\u00e1 habilitado el subt\u00edtulo 26, que corresponde a M$ 2.907."}, {"tipo": "Presupuesto", "texto": "4.4 Gastos extrapresupuestarios: s\u00f3lo se pueden agregar 5 Municipios, y tenemos 16. Ilustre Municipalidad de Putre (5.364), Ilustre Municipalidad de Illapel (771), Ilustre Municipalidad de Catemu (31.156), Ilustre Municipalidad  de El Tabo (46.757), Ilustre Municipalidad  de Limache (41.049), Ilustre Municipalidad  de Nogales (24.407), Ilustre Municipalidad  de Quintero (47.774), Ilustre Municipalidad  Del Quisco (23.700), Ilustre Municipalidad de Hijuelas (35.124), Ilustre Municipalidad de Puchuncav\u00ed (22.643), Ilustre Municipalidad de Santa Mar\u00eda (26.720), Ilustre Municipalidad  de Empedrado (38.302), Ilustre Municipalidad  de Romeral (36.676), Ilustre Municipalidad  de San Clemente (12.120), Ilustre Municipalidad  de Teno (29.955) y Ilustre Municipalidad  de Temuco (843). Total M$ 423.361."}, {"tipo": "Presupuesto", "texto": "4.5 Resumen total: no est\u00e1 sumando lo ingresando en los puntos anteriores, y tampoco se pueden editar los campos. Tampoco se puede completar la informaci\u00f3n de los a\u00f1os 2023 y 2024."}, {"tipo": "Poblaci\u00f3n", "texto": "Se observa un aumento de la poblaci\u00f3n beneficiada entre 2024 y 2025 debido a: (1) el dictamen N\u00b0 472530 de 2024, que reinterpreta dict\u00e1menes anteriores y establece que no existe cabida predial m\u00ednima para el saneamiento, permitiendo adem\u00e1s regularizar dominios tanto sin t\u00edtulo inscrito como con t\u00edtulo imperfecto; (2) el dictamen N\u00b0 6848 de 2025 de la Contralor\u00eda General de la Rep\u00fablica, que precisa que la exigencia de recepci\u00f3n definitiva de obras introducida por la Ley N\u00b0 21.477 no aplica a saneamientos iniciados antes de agosto de 2022; y (3) la Ley N\u00b0 21.737, que aumenta el l\u00edmite de aval\u00fao fiscal del inmueble a regularizar hasta 1.000 UTM, reduciendo rechazos por exceso de aval\u00fao, que anteriormente alcanzaban cerca del 5%. Por otro lado, durante este periodo se incluyen los beneficiarios de los dos nuevos componentes."}], "expost": {"tiene": true, "a\u00f1o": "2021", "nombre_eval": "REGULARIZACI\u00d3N DE T\u00cdTULOS DE DOMINIO (BIENES NACIONALES)", "linea": "EFA", "calificacion": "Desempe\u00f1o bajo", "presupuesto_nominal": null, "link_informe": "https://www.dipres.gob.cl/597/articles-244185_informe_final.pdf", "link_seguimiento": "https://www.dipres.gob.cl/597/articles-244185_seguimiento_compromisos.pdf", "evolucion_gasto": "Base 2021: 13,166,588 | 2022: -10.8% | 2023: -28.0% | 2024: -34.0% | 2025: -36.7% | [\u2193 acum: -36.7%]", "evolucion_ppto": "Base PL2025: 4,233,792 | PL2025: 0.0% | PL2026: -1.9% | PL2025\u2192PL2026: -1.9%", "evolucion_ratios": "Jun_2022: 83% | Dic_2022: 100% | Jun_2023: 100% | Dic_2023: 100% | Jun_2024: 100% | Dic_2024: 100% | Jun_2025: 100% | Dic_2025: 100% | [\u2191 +17%]", "evolucion_calificaciones": "Jun_2022: Parcialmente cumplido | Dic_2025: Egresado | [\u2191 mejora]", "evolucion_exante": "No fue sometido a Ex Ante en el a\u00f1o posterior a su evaluaci\u00f3n.", "calificacion_compromisos": "Egresado", "conclusiones": {"dise\u00f1o": null, "implementacion": "La evaluaci\u00f3n califica el implementaci\u00f3n como **Insuficiente**. Procesamiento de solicitudes: La capacidad de procesamiento es mayor que el ingreso de solicitudes (diferencia de m\u00e1s de 3 mil casos en los a\u00f1os 2018 y 2019, y llegando a casi 9 mil en el 2020, a\u00f1o en que se procesaron m\u00e1s de 22 mil expedientes). El comportamiento de la capacidad de procesamiento e ingreso de solicitudes resulta heterog\u00e9neo entre regiones.", "eficiencia": "Gasto en Recursos Humanos: muestra una importante heterogeneidad en los niveles promedios de costos por solicitud tramitada, tanto entre regiones como dentro de las regiones a lo largo de los a\u00f1os sin seguir una tendencia clara. Las regiones con m\u00e1s de 583 solicitudes anuales tramitadas presentan costos promedio por caso tramitado inferiores a los $316.000.", "eficacia": "La evaluaci\u00f3n califica el eficacia y resultados finales como **Insuficiente**. Procesamiento de solicitudes: La capacidad de procesamiento es mayor que el ingreso de solicitudes (diferencia de m\u00e1s de 3 mil casos en los a\u00f1os 2018 y 2019, y llegando a casi 9 mil en el 2020, a\u00f1o en que se procesaron m\u00e1s de 22 mil expedientes). El comportamiento de la capacidad de procesamiento e ingreso de solicitudes resulta heterog\u00e9neo entre regiones."}, "recomendaciones": {"dise\u00f1o": null, "implementacion": "Sistematizar e informar sobre los convenios de fondos con terceros firmados y vigentes, explicitando los montos y la poblaci\u00f3n definida que ser\u00e1 atendida. Mejorar mecanismos de coordinaci\u00f3n y acceso de informaci\u00f3n con instituciones p\u00fablicas y privadas relacionadas al proceso.", "eficiencia": "Levantamiento de informaci\u00f3n en dos \u00e1mbitos: a. Proceso idealizado (modelo \u00f3ptimo) de los tr\u00e1mites de regularizaci\u00f3n de t\u00edtulos de dominio, de forma que se pueda calcular un tiempo de demora \u00f3ptimo te\u00f3rico. b.", "eficacia": null}, "gasto_ejecutado": {"2021": 13166588.12310951, "2022": 11744193.68885767, "2023": 9482266.3741569, "2024": 8688410.3229696, "2025": 8340362.0}, "exante": {"2021": "Recomendado Favorablemente", "2025": "Recomendado Favorablemente"}, "compromisos": [{"periodo": "Dic 2021", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Jun 2022", "calificacion": "Parcialmente cumplido", "ratio": 0.8333}, {"periodo": "Dic 2022", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Jun 2023", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Dic 2023", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Jun 2024", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Dic 2024", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Jun 2025", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Dic 2025", "calificacion": "Egresado", "ratio": 1.0}], "comentario": null}, "exante_hist": [{"periodo": 2021, "tipo": "Reformulado", "resultado": "Recomendado Favorablemente"}, {"periodo": 2025, "tipo": "Reformulado", "resultado": "Recomendado Favorablemente"}], "region_data": {"Arica y Parinacota": 192, "Tarapac\u00e1": 82, "Antofagasta": 101, "Atacama": 74, "Coquimbo": 1478, "Valpara\u00edso": 2254, "Metropolitana": 1738, "O'Higgins": 1339, "Maule": 2362, "\u00d1uble": 1844, "Biob\u00edo": 2590, "La Araucan\u00eda": 4116, "Los R\u00edos": 1908, "Los Lagos": 2123, "Ays\u00e9n": 81, "Magallanes": 137}}, {"id_bips": 87298, "nombre": "Recuperaci\u00f3n y Fortalecimiento de la Colecci\u00f3n de Rutas Patrimoniales para Garantizar su Administraci\u00f3n y Sustentabilidad", "servicio": "SUBSECRETAR\u00cdA DE BIENES NACIONALES", "partida": "14", "nombre_ministerio": "MINISTERIO DE BIENES NACIONALES", "gasto_2025": 130718427, "estado": "Descontinuar", "pob": 50, "unidad": "Unidades", "link_monitoreo": "https://evaluacionymonitoreosesdipres.gob.cl/Reportes/EvaluacionMonitoreo2026?_id=h%2F0h%2FLHf3Wy7sfK6Hk8tyg%3D%3D", "year_inicio": 2015, "tipo_oferta": "No Social", "ejec_ext": "", "n_ejec": 0, "tipos_ejec": "", "problema": "Desde el a\u00f1o 2001 el MBN ha habilitado 65 Rutas Patrimoniales (RP) para otorgar acceso ciudadano al patrimonio natural y cultural contenido en territorios fiscales y bienes nacionales de uso p\u00fablico. Actualmente, el 84,6% de ellas no cuentan con una administraci\u00f3n efectiva por parte de terceros (por la v\u00eda de concesiones o convenios), que garantice su sustentabilidad. Para que las RP entreguen una verdadera experiencia de conocimiento del Patrimonio nacional, as\u00ed como permitan transformarse en polos de desarrollo para las comunidades aleda\u00f1as, necesariamente deben ser administradas por un tercero que las dote de una planta de prestaci\u00f3n de servicios b\u00e1sicos e infraestructura tur\u00edstica, asociada seg\u00fan el tipo de recorrido, ambiente geogr\u00e1fico y p\u00fablico. As\u00ed mismo, surge la necesidad de incorporar en su relato la riqueza del valor sociocultural, y patrimonial que conlleva el territorio, generando un trabajo en conjunto con las comunidades locales.", "proposito": "Incrementar el n\u00famero de Rutas Patrimoniales con administraci\u00f3n efectiva.", "descripcion": "Este programa se inici\u00f3 el a\u00f1o 2015, y tiene como objetivo incrementar el n\u00famero de rutas patrimoniales con administraci\u00f3n efectiva. Para ello, el programa crea nuevas rutas y se preocupa de la mantenci\u00f3n o mejoramiento de las ya existentes.", "asignaciones": [{"id_pres": "14-01-04-24-09-009", "denominacion": "Recuperaci\u00f3n y Fortalecimiento de Rutas Patrimoniales", "monto": 53715, "cap_nom": "Subsecretar\u00eda de Bienes Nacionales", "prog_nom": "Administraci\u00f3n de Bienes"}], "monitoreo": {"Hallazgo Focalizaci\u00f3n": 1, "Hallazgo Ejec inicial": 0, "Hallazgo Eje final": 0, "Hallazgo Persistencia": 0, "Hallazgo GB": 0, "Hallazgo No reporte GA": 0, "Hallazgo Persistencia GA": 0, "Hallazgo Ind no pertinente": 0, "Hallazgo Resultado 2025": 0, "Hallazgo Persistencia IP": 0, "Condicionar Comisi\u00f3n_1": 1, "Tres a\u00f1os disminuci\u00f3n indicador": 0, "Programas OT": 0, "Eval 2026 sin calificaci\u00f3n (Rebajar)": 0, "Evaluaciones expost tres a\u00f1os Mal desempe\u00f1o": 0, "No reporta RIS": 0}, "total_flags": 2, "observaciones": [{"tipo": "Presupuesto", "texto": "Esto se explica principalmente por la no concreci\u00f3n del convenio con Metro de Santiago para la emisi\u00f3n de tarjetas BIP con dise\u00f1os del Programa de Rutas Patrimoniales. A partir de agosto de 2025 se inici\u00f3 la tramitaci\u00f3n administrativa para su firma, reserv\u00e1ndose $10.000.000 para la ejecuci\u00f3n de dicha iniciativa. Sin embargo, el convenio no alcanz\u00f3 a ser formalizado dentro del a\u00f1o calendario, lo que impidi\u00f3 ejecutar los recursos comprometidos."}, {"tipo": "Presupuesto", "texto": "El componente no presenta ejecuci\u00f3n presupuestaria, dado que la modalidad de producci\u00f3n correspondi\u00f3 en su totalidad a gestiones realizadas de forma telem\u00e1tica desde el nivel central, sin incurrir en gastos adicionales."}, {"tipo": "Presupuesto", "texto": "El gasto administrativo corresponde a la estimaci\u00f3n del sueldo y del porcentaje de jornada de los profesionales de la instituci\u00f3n que participan en el Programa de Rutas Patrimoniales, calculado en funci\u00f3n del tiempo efectivo que destinan al cumplimiento de las tareas asociadas al programa.\n\nActualmente, dos profesionales trabajan a jornada completa en el programa: la Encargada Nacional del Programa de Rutas Patrimoniales y la Encargada Comunicacional del programa. Adicionalmente, seis profesionales destinan una parte de su jornada al Programa de Rutas Patrimoniales. Entre ellos se encuentran la Encargada de la Unidad de Gesti\u00f3n Territorial y Patrimonio \u2014unidad responsable del programa\u2014 y los analistas de dicha unidad, quienes cumplen funciones de apoyo t\u00e9cnico, integran las Comisiones Evaluadoras de l"}], "expost": {"tiene": false, "a\u00f1o": null, "nombre_eval": null, "linea": null, "calificacion": null, "presupuesto_nominal": null, "link_informe": null, "link_seguimiento": null, "conclusiones": {"dise\u00f1o": null, "implementacion": null, "eficiencia": null, "eficacia": null}, "recomendaciones": {"dise\u00f1o": null, "implementacion": null, "eficiencia": null, "eficacia": null}, "compromisos": [], "calificacion_compromisos": null, "gasto_ejecutado": {}, "evolucion_gasto": null, "evolucion_ppto": null, "evolucion_ratios": null, "evolucion_calificaciones": null, "exante": {}, "evolucion_exante": null, "comentario": null}, "exante_hist": [], "region_data": {"Arica y Parinacota": 3, "Tarapac\u00e1": 3, "Antofagasta": 1, "Atacama": 6, "Coquimbo": 6, "Valpara\u00edso": 7, "Metropolitana": 4, "O'Higgins": 2, "Maule": 1, "\u00d1uble": 1, "Biob\u00edo": 2, "La Araucan\u00eda": 3, "Los R\u00edos": 1, "Los Lagos": 3, "Ays\u00e9n": 2, "Magallanes": 5}}, {"id_bips": 87302, "nombre": "Regularizaci\u00f3n de t\u00edtulos de dominio y gesti\u00f3n de la propiedad fiscal asociada a Pueblos Ind\u00edgenas", "servicio": "SUBSECRETAR\u00cdA DE BIENES NACIONALES", "partida": "14", "nombre_ministerio": "MINISTERIO DE BIENES NACIONALES", "gasto_2025": 429592955, "estado": "Descontinuar", "pob": 756, "unidad": "Unidades", "link_monitoreo": "https://evaluacionymonitoreosesdipres.gob.cl/Reportes/EvaluacionMonitoreo2026?_id=gs%2BfYz16bYYH1pYMgvqbXw%3D%3D", "year_inicio": 2019, "tipo_oferta": "No Social", "ejec_ext": "", "n_ejec": 0, "tipos_ejec": "", "problema": "El principal problema p\u00fablico que el programa abordar\u00e1 es la incerteza jur\u00eddica sobre la propiedad, uso y goce de tierras de inter\u00e9s para pueblos ind\u00edgenas, en el marco de la Ley Ind\u00edgena N\u00b019.253 (CONADI). Esto se manifiesta en una demanda que corresponde al ingreso de solicitudes recurrentes y permanentes de asignaci\u00f3n de propiedad fiscal (D.L. N\u00b01.939/77), regularizaci\u00f3n de peque\u00f1a propiedad ra\u00edz (D.L. N\u00b02.695) y, reclamaciones ingresadas mediante mecanismos alternativos a los procedimientos regulares del Ministerio (lobby, cartas a la autoridad, solicitudes interministeriales, solicitudes del poder legislativo, entre otras). En estos casos es posible encontrar situaciones referidas a ocupaci\u00f3n efectiva o \u00e1reas de inter\u00e9s patrimonial, productivo o tur\u00edstico sin uso u ocupaci\u00f3n actual, donde es probable que se presenten superposiciones en relaci\u00f3n a inmuebles fiscales con alto valor patrimonial, ya sea ambiental y/o cultural.", "proposito": "Tramitar oportunamente solicitudes de pueblos ind\u00edgenas, tanto en materias asociadas a D.L.1939/1977 como a D.L. 2695/79, contribuyendo al desarrollo de pol\u00edticas p\u00fablicas territoriales, evitando o resolviendo conflictos e incumplimientos legales.", "descripcion": "El programa busca tramitar las solicitudes de pueblos ind\u00edgenas de asignaci\u00f3n de propiedad fiscal y solicitudes de regularizaci\u00f3n de su peque\u00f1a propiedad ra\u00edz, con el objeto de promover el desarrollo propio de los pueblos ind\u00edgenas y reconocer sus derechos territoriales. Asimismo implementa estrategias de gesti\u00f3n territorial que permiten dar respuesta oportuna a demanda declarada y no declarada de uso, administraci\u00f3n, participaci\u00f3n y propiedad de pueblos ind\u00edgenas sobre propiedad fiscal. Para ello, promueve di\u00e1logos institucionales del estado con los pueblos ind\u00edgenas, consultas ind\u00edgenas, encuentros participativos, mesas de tierras.", "asignaciones": [{"id_pres": "14-01-04-24-09-016", "denominacion": "Regularizaci\u00f3n de t\u00edtulos de dominio y gesti\u00f3n de la propiedad fiscal asociada a Pueblos Ind\u00edgenas", "monto": 574493, "cap_nom": "Subsecretar\u00eda de Bienes Nacionales", "prog_nom": "Administraci\u00f3n de Bienes"}], "monitoreo": {"Hallazgo Focalizaci\u00f3n": 1, "Hallazgo Ejec inicial": 0, "Hallazgo Eje final": 1, "Hallazgo Persistencia": 0, "Hallazgo GB": 0, "Hallazgo No reporte GA": 0, "Hallazgo Persistencia GA": 0, "Hallazgo Ind no pertinente": 0, "Hallazgo Resultado 2025": 1, "Hallazgo Persistencia IP": 0, "Condicionar Comisi\u00f3n_1": 1, "Tres a\u00f1os disminuci\u00f3n indicador": 0, "Programas OT": 0, "Eval 2026 sin calificaci\u00f3n (Rebajar)": 0, "Evaluaciones expost tres a\u00f1os Mal desempe\u00f1o": 0, "No reporta RIS": 0}, "total_flags": 4, "observaciones": [{"tipo": "Poblaci\u00f3n", "texto": "Se informa que existe una diferencia en el c\u00e1lculo de la poblaci\u00f3n potencial y poblaci\u00f3n objetivo respecto a procesos de monitoreo anteriores. Por ello, se produce una baja en el porcentaje de cobertura del programa de un 62% el a\u00f1o 2024 a un 3% el a\u00f1o 2025, producto del aumento exponencial de la poblaci\u00f3n objetivo. Revisada dicha situaci\u00f3n por los equipos del Servicio con la contraparte de DIPRES, se determin\u00f3 que la metodolog\u00eda utilizada para definir la poblaci\u00f3n potencial y objetivo no se ajusta a los criterios que el Ministerio utiliza actualmente, por lo que se trabajar\u00e1 en su actualizaci\u00f3n para pr\u00f3ximos procesos de monitoreo."}, {"tipo": "Indicadores", "texto": "Se informa que la variaci\u00f3n del porcentaje de cumplimiento del indicador se asocia a el incidente inform\u00e1tico experimentado por el Ministerio durante el 2024, que afect\u00f3 sus servidores y a los procesos de ingreso de expedientes. Por lo anterior, una vez normalizados los sistemas, se produjo un aumento en los casos ingresados, lo que desv\u00ed\u00f3 la medici\u00f3n del indicador respecto a a\u00f1os anteriores, alter\u00e1ndolo con una tendencia negativa a\u00fan cuando la producci\u00f3n de beneficiarios aument\u00f3 respecto al periodo 2024.\n\n\n\nA modo de referencia, para el periodo 2024 el c\u00e1lculo del indicador correspondi\u00f3 a: \n\n- Numerador: 691\n\n- Denominador: 1777\n\n- Porcentaje de cumplimiento: 36%\n\n\n\nMientras que para el periodo 2025 corresponde a:\n\n- Numerador: 756\n\n- Denominador: 2496\n\n- Porcentaje de cumplimiento: 30%"}, {"tipo": "Presupuesto", "texto": "La ejecuci\u00f3n presupuestaria del programa alcanz\u00f3 aproximadamente un 60% del presupuesto disponible, lo cual se explica principalmente por la no materializaci\u00f3n de un proceso de consulta ind\u00edgena de gran envergadura que se encontraba previsto durante el periodo. Dado que la eventual realizaci\u00f3n de dicha consulta implicaba costos operativos significativos, asociados a procesos participativos territoriales, log\u00edstica, facilitaci\u00f3n intercultural, traslados, sistematizaci\u00f3n y acompa\u00f1amiento t\u00e9cnico, el programa debi\u00f3 resguardar anticipadamente los recursos necesarios para su adecuada implementaci\u00f3n, en cumplimiento de los est\u00e1ndares establecidos en el Convenio 169 de la OIT y al DS N\u00b066/2014 de MDSF. Por ello, se estim\u00f3 pertinente mantener en reserva una disponibilidad presupuestaria suficiente para responder oportunamente a este requerimiento institucional, evitando as\u00ed el riesgo de no contar con financiamiento en caso de activarse el proceso durante el a\u00f1o presupuestario."}], "expost": {"tiene": true, "a\u00f1o": "2021", "nombre_eval": "REGULARIZACI\u00d3N DE T\u00cdTULOS DE DOMINIO (BIENES NACIONALES)", "linea": "EFA", "calificacion": "Desempe\u00f1o bajo", "presupuesto_nominal": 404.681, "link_informe": "https://www.dipres.gob.cl/597/articles-244185_informe_final.pdf", "link_seguimiento": "https://www.dipres.gob.cl/597/articles-244185_seguimiento_compromisos.pdf", "evolucion_gasto": "Base 2021: 387,100 | 2022: -10.4% | 2023: +20.3% | 2024: +5.0% | 2025: +12.5% | [\u2191 acum: +12.5%]", "evolucion_ppto": "Base PL2025: 683,236 | PL2025: 0.0% | PL2026: -15.9% | PL2025\u2192PL2026: -15.9%", "evolucion_ratios": "Jun_2022: 83% | Dic_2022: 100% | Jun_2023: 100% | Dic_2023: 100% | Jun_2024: 100% | Dic_2024: 100% | Jun_2025: 100% | Dic_2025: 100% | [\u2191 +17%]", "evolucion_calificaciones": "Jun_2022: Parcialmente cumplido | Dic_2025: Egresado | [\u2191 mejora]", "evolucion_exante": "No fue sometido a Ex Ante en el a\u00f1o posterior a su evaluaci\u00f3n.", "calificacion_compromisos": "Egresado", "conclusiones": {"dise\u00f1o": null, "implementacion": "La evaluaci\u00f3n califica el implementaci\u00f3n como **Insuficiente**. Procesamiento de solicitudes: La capacidad de procesamiento es mayor que el ingreso de solicitudes (diferencia de m\u00e1s de 3 mil casos en los a\u00f1os 2018 y 2019, y llegando a casi 9 mil en el 2020, a\u00f1o en que se procesaron m\u00e1s de 22 mil expedientes). El comportamiento de la capacidad de procesamiento e ingreso de solicitudes resulta heterog\u00e9neo entre regiones.", "eficiencia": "Gasto en Recursos Humanos: muestra una importante heterogeneidad en los niveles promedios de costos por solicitud tramitada, tanto entre regiones como dentro de las regiones a lo largo de los a\u00f1os sin seguir una tendencia clara. Las regiones con m\u00e1s de 583 solicitudes anuales tramitadas presentan costos promedio por caso tramitado inferiores a los $316.000.", "eficacia": "La evaluaci\u00f3n califica el eficacia y resultados finales como **Insuficiente**. Procesamiento de solicitudes: La capacidad de procesamiento es mayor que el ingreso de solicitudes (diferencia de m\u00e1s de 3 mil casos en los a\u00f1os 2018 y 2019, y llegando a casi 9 mil en el 2020, a\u00f1o en que se procesaron m\u00e1s de 22 mil expedientes). El comportamiento de la capacidad de procesamiento e ingreso de solicitudes resulta heterog\u00e9neo entre regiones."}, "recomendaciones": {"dise\u00f1o": null, "implementacion": "Sistematizar e informar sobre los convenios de fondos con terceros firmados y vigentes, explicitando los montos y la poblaci\u00f3n definida que ser\u00e1 atendida. Mejorar mecanismos de coordinaci\u00f3n y acceso de informaci\u00f3n con instituciones p\u00fablicas y privadas relacionadas al proceso.", "eficiencia": "Levantamiento de informaci\u00f3n en dos \u00e1mbitos: a. Proceso idealizado (modelo \u00f3ptimo) de los tr\u00e1mites de regularizaci\u00f3n de t\u00edtulos de dominio, de forma que se pueda calcular un tiempo de demora \u00f3ptimo te\u00f3rico. b.", "eficacia": null}, "gasto_ejecutado": {"2021": 387099.8621828417, "2022": 346772.9644989885, "2023": 465738.807096, "2024": 406299.773196, "2025": 435426.0}, "exante": {"2024": "Recomendado Favorablemente"}, "compromisos": [{"periodo": "Dic 2021", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Jun 2022", "calificacion": "Parcialmente cumplido", "ratio": 0.8333}, {"periodo": "Dic 2022", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Jun 2023", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Dic 2023", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Jun 2024", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Dic 2024", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Jun 2025", "calificacion": "Parcialmente cumplido", "ratio": 1.0}, {"periodo": "Dic 2025", "calificacion": "Egresado", "ratio": 1.0}], "comentario": null}, "exante_hist": [{"periodo": 2024, "tipo": "Reformulado", "resultado": "Recomendado Favorablemente"}], "region_data": {"Arica y Parinacota": 288, "Tarapac\u00e1": 250, "Antofagasta": 43, "Atacama": 13, "Coquimbo": 5, "Valpara\u00edso": 2, "Metropolitana": 6, "O'Higgins": 1, "Maule": 1, "\u00d1uble": 0, "Biob\u00edo": 5, "La Araucan\u00eda": 58, "Los R\u00edos": 7, "Los Lagos": 37, "Ays\u00e9n": 28, "Magallanes": 12}}];
+const IND     = {"87301": {"ip": [{"nombre": "Porcentaje de inmuebles del Plan de Gesti\u00f3n Territorial 2023-2026 licitados o asignados al a\u00f1o t sobre el universo de inmuebles que componen el Plan de Gesti\u00f3n Territorial Regional 2023-2026", "formula": "(N\u00b0 de inmuebles del Plan de Gesti\u00f3n Territorial 2023-2026 licitados o asignados al a\u00f1o t/Total inmuebles comprometidos en el Plan de Gesti\u00f3n Territorial Regional  2023-2026)*100", "unidad": "Porcentual", "dimension": "Eficacia", "sentido": "Ascendente", "nota": "El n\u00famero de inmuebles total considerado para el PGTR 2023-2026 fue de 900; esto, alineado con los objetivos estrat\u00e9gicos de la actual administraci\u00f3n. As\u00ed se estableci\u00f3 la meta anual homog\u00e9nea, para los 4 a\u00f1os del per\u00edodo, de 78 inmuebles licitados y 147 inmuebles asignados de manera directa, lo que da un total de 225 inmuebles como meta anual. \n\nCabe se\u00f1alar que en el transcurso del per\u00edodo, por disminuci\u00f3n del presupuesto asignado al programa PGTR, tanto para 2024 como para 2025, se redujo la meta anual a 52 inmuebles licitados y 97 inmuebles asignados de manera directa, lo que da un total de 149 inmuebles como meta anual para cada uno de estos 2 a\u00f1os. As\u00ed, no ser\u00e1 posible llegar a los 900 inmuebles programados inicialmente, sino que a 748.", "medios": "Se cuenta con los actos administrativos que otorgan las asignaciones directas, as\u00ed como la publicaci\u00f3n de las bases de licitaci\u00f3n en lo que respecta a licitaciones.", "numerador": 208.0, "just_si": null, "denominador": 748.0, "resultado": 0.28, "historico": {"2025": 0.28}}], "ic": []}, "87296": {"ip": [{"nombre": "Porcentaje de solicitudes que se tramitan en menos de 28 meses.", "formula": "(N\u00b0 de solicitudes tramitadas en menos \u00a0de 28 meses acumuladas al a\u00f1o t/ N\u00b0 de solicitudes tramitadas acumuladas al a\u00f1o t)*100", "unidad": "Porcentual", "dimension": "Eficacia", "sentido": "Ascendente", "nota": "Para calcular el numerador corresponde a las solicitudes que han cumplido un hito de tramitaci\u00f3n acumuladas desde el a\u00f1o 2024, pudiendo ser: tramitado positivo (ingreso al conservador de bienes ra\u00edces), tramitado negativo (resoluci\u00f3n que deniega solicitud, o por otras causales excepcionales) y enviado a tribunales (donde se presenta oposici\u00f3n al tr\u00e1mite, y se env\u00eda a tribunales), y que tenga 28 o menos meses de tramitaci\u00f3n. Los meses de tramitaci\u00f3n se calcularan respecto de la diferencia entre la fecha del cumplimiento del hito y de la fecha de ingreso de la solicitud dividido en 30.\n\nEn el caso del denominador, se utilizar\u00e1 el total de solicitudes que hubieran cumplido un hito de tramitaci\u00f3n acumulada desde el a\u00f1o 2024.\n\nPara ambos calculos se utilizar\u00e1 el panel de tramitaci\u00f3n a diciembre del a\u00f1o t.", "medios": "Panel de solicitudes tramitadas a diciembre 2025, que considera el total de solicitudes tramitadas durante el a\u00f1o 2025 (numerador) en 28 o menos meses,  y el total de solicitudes tramitadas (denominador) durante el a\u00f1o 2025, de los 3 componente: Saneamiento, T\u00edtulo Gratuito y Ley del Sur.", "numerador": 12385.0, "just_si": null, "denominador": 20196.0, "resultado": 0.61, "historico": {"2025": 0.61}}], "ic": [{"nombre": "Porcentaje de solicitudes de rezago tramitadas en el a\u00f1o t con fecha de ingreso al t-24 meses", "formula": "(N\u00b0 de solicitudes con ingreso a los sistemas de tramitaci\u00f3n al a\u00f1o t-24 meses, tramitadas en el a\u00f1o t/N\u00b0 de solicitudes con fecha de ingreso al a\u00f1o t-24 meses que se encuentran en proceso al a\u00f1o t)*100", "unidad": "Porcentual", "dimension": "Eficacia", "sentido": "Ascendente", "nota": "La metodolog\u00eda para calcular el numerador corresponde a la identificaci\u00f3n de solicitudes con fecha de ingreso igual o anterior al t-2, considerando los paneles de ingreso de solicitudes de t-1 y t-2, que hubieran sido tramitadas durante t. Para calcular el denominador se contempl\u00f3 la cantidad de  solicitudes con fecha de ingreso igual o anterior al t-2, considerando el panel de casos en proceso a diciembre de t.", "medios": "Panel de solicitudes tramitadas a diciembre 2025, que considera el total de solicitudes tramitadas durante el a\u00f1o 2025, ingresadas al a\u00f1o t-24 meses (numerador) y panel de casos en proceso a diciembre 2025, que considera las solicitudes ingresadas al a\u00f1o t-24 que se encuentran en proceso al a\u00f1o 2025 (denominador)", "numerador": 11071.0, "just_si": null, "denominador": 37414.0, "resultado": 0.3, "historico": {"2023": 0.19, "2024": 0.34, "2025": 0.3}}]}, "87302": {"ip": [{"nombre": "Porcentaje de casos de pueblos ind\u00edgenas resueltos en el a\u00f1o t, respecto a casos identificados por el Ministerio de Bienes Nacionales al a\u00f1o t.", "formula": "(N\u00b0 de casos de pueblos ind\u00edgenas resueltos en el a\u00f1o t/N\u00b0 de casos identificados por el Ministerio de Bienes Nacionales al a\u00f1o t)*100", "unidad": "Porcentual", "dimension": "Eficacia", "sentido": "Ascendente", "nota": "Para calcular el numerador se toma el total de solicitudes de la cartera ind\u00edgena resueltas en el a\u00f1o en curso, tanto de regularizaci\u00f3n de t\u00edtulos de dominio como de propiedad fiscal, m\u00e1s los casos gestionados de mayor complejidad.\n\nPara calcular el denominador se toma el total de solicitudes de la cartera ind\u00edgena (solicitudes de regularizaci\u00f3n y asignaciones de propiedad fiscal) en proceso (a\u00f1o en curso y rezago), tanto de regularizaci\u00f3n y de propiedad fiscal, m\u00e1s los casos identificados de mayor complejidad.", "medios": "Para los casos del componente 1, se considera como medio de verificaci\u00f3n los actos administrativos emitidos para cada expediente.\n\nPara los casos del componente 2, se considera como medio de verificaci\u00f3n los informes de recomendaci\u00f3n a la autoridad incumbente, seg\u00fan corresponda.\n\nPara los casos del componente 3, se considera como medio de verificaci\u00f3n las resoluciones de t\u00e9rmino negativas, env\u00edo a tribunales, o inscripci\u00f3n al CBR, seg\u00fan corresponda.", "numerador": 756.0, "just_si": null, "denominador": 2496.0, "resultado": 0.3, "historico": {"2023": 0.32, "2024": 0.36, "2025": 0.3}}], "ic": []}, "87297": {"ip": [{"nombre": "Porcentaje de ocupaciones ilegales e irregulares en inmuebles fiscales normalizadas", "formula": "(N\u00b0 de ocupaciones ilegales e  irregulares normalizadas en a\u00f1o t/Total de ocupaciones ilegales e irregulares en inmuebles fiscales detectadas al 31 de diciembre del a\u00f1o t-1)*100", "unidad": "Porcentual", "dimension": "Eficacia", "sentido": "Ascendente", "nota": "Se consideran solamente los casos normalizados, es decir, aquellas ocupaciones donde se dicto un acto de administraci\u00f3n y disposici\u00f3n del inmueble y aquellas fichas de fiscalizaci\u00f3n que constataron la de desocupaci\u00f3n del inmueble de forma voluntaria o forzosa, dividido por la poblaci\u00f3n objetivo del a\u00f1o t-1 al 31 de diciembre de 2023.", "medios": "Actos administrativos de disposici\u00f3n de inmuebles fiscales\n\nFichas de fiscalizaci\u00f3n que verifican la desocupaci\u00f3n del inmueble fiscal que se encontraba ocupado ilegal o irregularmente", "numerador": 1776.0, "just_si": null, "denominador": 26047.0, "resultado": 0.07, "historico": {"2023": 0.08, "2024": 0.08, "2025": 0.07}}], "ic": []}, "87299": {"ip": [{"nombre": "Porcentaje de inmuebles asignados para el desarrollo de proyectos de energ\u00eda, respecto del universo de inmuebles en tr\u00e1mite al a\u00f1o t-1", "formula": "(N\u00b0 de inmuebles adjudicados (por licitaci\u00f3n) o asignados (en forma directa) para el desarrollo de proyectos de energ\u00eda /Total de solicitudes de inmuebles para proyectos de Energ\u00eda en tr\u00e1mite al a\u00f1o t-1)*100", "unidad": "Porcentual", "dimension": "Eficacia", "sentido": "Ascendente", "nota": "El numerador corresponde a los actos administrativos de asignaci\u00f3n de inmuebles fiscales dictados en el a\u00f1o: Para los tr\u00e1mites delegados a Seremis (arriendos, servidumbres no voluntarias) se mide en base a las resoluciones de asignaci\u00f3n de inmuebles fiscales dictadas; para los tr\u00e1mites no delegados (CUO, ventas y servidumbres voluntarias) se mide en base al primer decreto (autorizatorio o adjudicatorio en el caso de las propuestas p\u00fablicas), ya que posteriormente se debe dictar el decreto que aprueba el contrato.El denominador corresponde al universo de solicitudes en tr\u00e1mite (sin acto administrativo dictado) al 31 de diciembre del a\u00f1o anterior.", "medios": "Planilla Excel de seguimiento de la tramitaci\u00f3n de las solicitudes asociadas a proyectos de energ\u00eda.\n\nSistemas Inform\u00e1ticos de tramitaci\u00f3n de solictudes de terrenos fiscales", "numerador": 47.0, "just_si": null, "denominador": 288.0, "resultado": 0.16, "historico": {"2025": 0.16}}], "ic": []}, "87298": {"ip": [{"nombre": "Porcentaje de Rutas Patrimoniales con administraci\u00f3n efectiva.", "formula": "(N\u00famero de Rutas Patrimoniales con administraci\u00f3n efectiva acumuladas al a\u00f1o t/Total de Rutas Patrimoniales acumuladas al a\u00f1o t-1)*100", "unidad": "Porcentual", "dimension": "Eficacia", "sentido": "Ascendente", "nota": "Al a\u00f1o 2024 se han creado 83 Rutas Patrimoniales de las cuales 24 se encuentran se encuentran administradas", "medios": "1. Planilla de seguimiento y respaldo que administra la Unidad de Gesti\u00f3n Territorial y Patrimonio, en la cual se aloja el Programa de rutas Patrimoniales.\n\n2. Decreto Exento, que aprueban los convenios de puesta en valor y difusi\u00f3n de las RP, entre MBN y los administradores responsables de las RP que ingresan cada a\u00f1o.", "numerador": 29.0, "just_si": null, "denominador": 85.0, "resultado": 0.34, "historico": {"2025": 0.34}}], "ic": []}};
+//{{TAB_PPTO}}
+
+const FNAMES  = {"Hallazgo Focalizaci\u00f3n": "Focalizaci\u00f3n", "Hallazgo Ejec inicial": "Ejecuci\u00f3n inicial", "Hallazgo Eje final": "Ejecuci\u00f3n final", "Hallazgo Persistencia": "Persistencia", "Hallazgo GB": "Gesti\u00f3n de beneficiarios", "Hallazgo No reporte GA": "No reporte (gesti\u00f3n activa)", "Hallazgo Persistencia GA": "Persistencia (gesti\u00f3n activa)", "Hallazgo Ind no pertinente": "Indicador no pertinente", "Hallazgo Resultado 2025": "Resultado 2025", "Hallazgo Persistencia IP": "Persistencia (indicador)", "Condicionar Comisi\u00f3n_1": "Condicionado comisi\u00f3n", "Tres a\u00f1os disminuci\u00f3n indicador": "3 a\u00f1os disminuci\u00f3n indicador", "Programas OT": "Programa OT", "Eval 2026 sin calificaci\u00f3n (Rebajar)": "Eval. 2026 sin calificaci\u00f3n", "Evaluaciones expost  tres a\u00f1os Mal desempe\u00f1o ": "Eval. ex post 3 a\u00f1os mal desempe\u00f1o", "No reporta RIS": "No reporta RIS"};
+const FGROUPS = {"Hallazgos de monitoreo": ["Hallazgo Focalizaci\u00f3n", "Hallazgo Ejec inicial", "Hallazgo Eje final", "Hallazgo Persistencia", "Hallazgo GB", "Hallazgo No reporte GA", "Hallazgo Persistencia GA", "Hallazgo Ind no pertinente", "Hallazgo Resultado 2025", "Hallazgo Persistencia IP"], "Criterios de evaluaci\u00f3n": ["Tres a\u00f1os disminuci\u00f3n indicador", "Programas OT", "Eval 2026 sin calificaci\u00f3n (Rebajar)", "Evaluaciones expost tres a\u00f1os Mal desempe\u00f1o", "No reporta RIS"]};
+
+const REG_ORDER = ['Arica y Parinacota','Tarap\u00e1',
+  'Antofagasta','Atacama','Coquimbo','Valpara\u00edso',
+  'Metropolitana',"O'Higgins",'Maule','\u00d1uble','Biob\u00edo',
+  'La Araucan\u00eda','Los R\u00edos','Los Lagos','Ays\u00e9n','Magallanes'];
+
+const fmtM = n => n>0?'$'+Math.round(n).toLocaleString('es-CL'):'\u2014';
+const fmtK = n => {if(!n||n===0)return '\u2014';return '$'+Math.round(n).toLocaleString('es-CL');};
+
+let leyBuilt=false, progsBuilt=false;
+function showTab(n,el){
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-'+n).classList.add('active');
+  if(n==='ley'&&!leyBuilt){leyBuilt=true;buildNav();}
+  if(n==='programas'&&!progsBuilt){progsBuilt=true;renderList(BIPS);}
+}
+
+function buildNav(){
+  const nav=document.getElementById('tree-nav');nav.innerHTML='';
+  TREE.forEach(cap=>{
+    const sec=document.createElement('div');sec.className='tree-sec';
+    sec.innerHTML='<div class="tree-cap">Cap. '+cap.id+' \u00b7 '+cap.nombre+'</div>';
+    cap.programas.forEach(prog=>{
+      const btn=document.createElement('div');btn.className='tree-prog';btn.id='tp-'+cap.id+'-'+prog.id;
+      btn.innerHTML='<span class="tp-dot"></span><span>Prog. '+prog.id+' \u00b7 '+prog.nombre.replace(/\s*\([^)]*\)/g,'').substring(0,36)+'</span>';
+      btn.onclick=()=>renderDet(cap,prog,btn);
+      sec.appendChild(btn);
+    });
+    nav.appendChild(sec);
+  });
+}
+
+function renderDet(cap,prog,btn){
+  document.querySelectorAll('.tree-prog').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const wrap=document.getElementById('det-wrap');
+  let h='<div class="detail"><div class="det-hdr">'
+    +'<div class="det-bc">Partida 29 \u00b7 Cap. '+cap.id+' \u00b7 Prog. '+prog.id+'</div>'
+    +'<div class="det-title">'+prog.nombre+'</div>'
+    +'<div class="det-monto">Total: <strong>'+fmtM(prog.monto)+'</strong> M$ <span style="font-size:11px;color:var(--ink3);font-weight:400">(miles de pesos)</span></div>'
+    +'</div><div class="det-body">';
+  prog.subtitulos.forEach(s=>{
+    h+='<div class="subt"><div class="subt-hdr" onclick="tgSubt(this)">'
+      +'<span class="subt-num">'+s.id+'</span><span class="subt-n">'+s.nombre+'</span>'
+      +'<span class="subt-m">'+fmtK(s.monto)+'</span><span class="subt-arr">\u25bc</span>'
+      +'</div><div class="subt-body">';
+    s.items.forEach(it=>{
+      h+='<div class="item-row" onclick="tgItem(this,event)">'
+        +'<div class="item-hdr"><span class="item-num">'+it.id+'</span><span class="item-n">'+it.nombre+'</span><span class="item-m">'+fmtK(it.monto)+'</span></div>'
+        +'<div class="item-body">';
+      if(!it.asigs.length){h+='<div style="font-size:12px;color:var(--ink3);padding:.4rem .25rem">Sin asignaciones detalladas</div>';}
+      else{
+        it.asigs.forEach(a=>{
+          const hasB=a.bips&&a.bips.length>0;
+          h+='<div class="asig" id="asig-'+a.id_pres.replace(/-/g,'_')+'" onclick="tgBips(this,\''+a.id_pres+'\',event)">'
+            +'<span class="asig-num">'+a.id+'</span>'
+            +'<div class="asig-info"><div class="asig-n">'+a.nombre+'</div><div class="asig-code">'+a.id_pres+'</div>'
+            +(hasB?'<div class="asig-hint">\u25b8 '+a.bips.length+' programa'+(a.bips.length>1?'s':'')+' BIPS</div>':'')
+            +'</div>'
+            +'<span class="asig-m">'+fmtK(a.monto)+'</span>'
+            +'</div>'
+            +'<div class="bpanel" id="bp-'+a.id_pres.replace(/-/g,'_')+'"><div class="bpanel-lbl">Programas BIPS vinculados</div>';
+          if(hasB){a.bips.forEach(b=>{h+='<div class="bchip" onclick="goToProg('+b.id_bips+',event)"><span class="bchip-id">'+b.id_bips+'</span><span class="bchip-n">'+b.nombre+'</span><span class="bchip-s">'+b.servicio+'</span></div>';});}
+          else{h+='<div class="no-bips">Sin programas BIPS identificados</div>';}
+          h+='</div>';
+        });
+      }
+      h+='</div></div>';
+    });
+    h+='</div></div>';
+  });
+  h+='</div></div>';
+  wrap.innerHTML=h;
+}
+
+function tgSubt(hdr){hdr.classList.toggle('open');}
+function tgItem(el,e){if(e)e.stopPropagation();const b=el.querySelector('.item-body');b.style.display=b.style.display==='block'?'none':'block';}
+function tgBips(el,id_pres,e){
+  if(e)e.stopPropagation();
+  const pid='bp-'+id_pres.replace(/-/g,'_');const panel=document.getElementById(pid);if(!panel)return;
+  const open=panel.style.display==='block';
+  document.querySelectorAll('.bpanel').forEach(p=>p.style.display='none');
+  document.querySelectorAll('.asig').forEach(a=>a.classList.remove('active'));
+  if(!open){panel.style.display='block';el.classList.add('active');}
+}
+function goToProg(id_bips,e){
+  if(e)e.stopPropagation();
+  showTab('programas',document.querySelectorAll('.ntab')[1]);
+  if(!progsBuilt){progsBuilt=true;renderList(BIPS);}
+  setTimeout(function(){
+    var b=BIPS.find(function(x){return x.id_bips===id_bips;});
+    if(b)renderFicha(b);
+    var card=document.getElementById('pc-'+id_bips);
+    if(card){document.querySelectorAll('.pc').forEach(function(c){c.classList.remove('active');});card.classList.add('active');card.scrollIntoView({behavior:'smooth',block:'center'});}
+    setTimeout(function(){document.getElementById('ficha-wrap').scrollIntoView({behavior:'smooth',block:'start'});},150);
+  },100);
+}
+function goToAsig(id_pres){
+  var pts=id_pres.split('-');var capId=parseInt(pts[1]),progId=parseInt(pts[2]),subtId=parseInt(pts[3]),itemId=parseInt(pts[4]);
+  showTab('ley',document.querySelectorAll('.ntab')[1]);
+  setTimeout(function(){
+    var cap=TREE.find(function(c){return c.id===capId;});
+    var prog=cap&&cap.programas.find(function(p){return p.id===progId;});
+    if(!cap||!prog)return;
+    var btn=document.getElementById('tp-'+capId+'-'+progId);if(!btn)return;
+    renderDet(cap,prog,btn);
+    setTimeout(function(){
+      document.querySelectorAll('#det-wrap .subt-hdr').forEach(function(hdr){var n=hdr.querySelector('.subt-num');if(n&&parseInt(n.textContent)===subtId)hdr.classList.add('open');});
+      document.querySelectorAll('#det-wrap .item-row').forEach(function(row){var n=row.querySelector('.item-num');if(n&&parseInt(n.textContent)===itemId)row.querySelector('.item-body').style.display='block';});
+      var asigEl=document.getElementById('asig-'+id_pres.replace(/-/g,'_'));
+      if(asigEl){
+        document.querySelectorAll('.asig').forEach(function(a){a.classList.remove('active');});
+        document.querySelectorAll('.bpanel').forEach(function(p){p.style.display='none';});
+        asigEl.classList.add('active');
+        var bp=document.getElementById('bp-'+id_pres.replace(/-/g,'_'));if(bp)bp.style.display='block';
+        setTimeout(function(){asigEl.scrollIntoView({behavior:'smooth',block:'center'});},50);
+      }
+    },80);
+  },50);
+}
+function hlReg(bid,rid){
+  document.querySelectorAll('[id^="mp-'+bid+'-"]').forEach(function(el){el.classList.remove('hl');});
+  document.querySelectorAll('[id^="rt-'+bid+'-"]').forEach(function(el){el.classList.remove('hl-row');});
+  var mp=document.getElementById('mp-'+bid+'-'+rid);var rt=document.getElementById('rt-'+bid+'-'+rid);
+  if(mp)mp.classList.add('hl');
+  if(rt){rt.classList.add('hl-row');rt.scrollIntoView({behavior:'smooth',block:'nearest'});}
+}
+
+// CONTAR PROGRAMAS Y PARTIDAS PARA EL HEADER
+function actualizarHeaderStats(dataBips, dataTree) {
+  var nCaps = dataTree.length;
+  
+  // Contamos los programas presupuestarios (asumiendo que están dentro de cada capítulo)
+  var nProgsPres = 0;
+  dataTree.forEach(function(cap) {
+  var hijos = cap.children || cap.hijos || cap.programas;
+    
+    if (hijos && Array.isArray(hijos)) {
+      nProgsPres += hijos.length;
+    }
+  });
+
+  // --- 2. Datos desde BIPS_DATA ---
+  var nTotalBips = dataBips.length;
+  var nConAsig = dataBips.filter(function(b) {
+    return b.asignaciones && b.asignaciones.length > 0;
+  }).length;
+
+  // --- 3. Inyectar en el HTML ---
+  var elCaps = document.getElementById('stat-caps');
+  var elProgsP = document.getElementById('stat-progs-pres');
+  var elTotalB = document.getElementById('stat-total-bips');
+  var elAsig = document.getElementById('stat-con-asig');
+
+  if (elCaps) elCaps.innerText = nCaps;
+  if (elProgsP) elProgsP.innerText = nProgsPres;
+  if (elTotalB) elTotalB.innerText = nTotalBips;
+  if (elAsig) elAsig.innerText = nConAsig;
+}
+
+var pfFilter='all';
+function renderList(data){
+  var resumen = document.getElementById('conteo-resumen');
+  if (resumen) {
+      if (data.length === 0) {
+        resumen.innerHTML = '<span style="color:var(--tbad)">No se encontraron programas</span>';
+      } else {
+        resumen.innerHTML = 'Programas encontrados: <span style="color:var(--a2)">' + data.length + '</span>';
+      }
+    }
+    
+    var groups=[
+    {key:'SUBSECRETAR\u00cdA DE BIENES NACIONALES', short: 'Subse. Bienes Nac.', color:'#2E5FA3'},
+  ];
+  
+  var h='';
+  groups.forEach(function(g){
+    var items=data.filter(function(b){return b.servicio===g.key;});if(!items.length)return;
+    h+='<div class="grp-hdr"><div class="grp-dot" style="background:'+g.color+'"></div><div class="grp-n">'+g.key+'</div><div class="grp-c">'+items.length+' programas</div></div><div class="pg">';
+    items.forEach(function(b){
+      var linked=b.asignaciones&&b.asignaciones.length>0;
+      var nF=b.total_flags||0;
+      var eCls=b.estado==='Sin observaciones'?'tok':b.estado==='Rebajar presupuesto'?'twrn':b.estado==='Descontinuar'?'tbad':'tna';
+      h+='<div class="pc" id="pc-'+b.id_bips+'" onclick="selProg('+b.id_bips+')">'
+        +(nF>0?'<div class="fc">'+nF+'</div>':'')
+        +'<div class="pc-srv">' + g.short + '</div>'
+        +'<div class="pc-id">BIPS '+b.id_bips+'</div>'
+        +'<div class="pc-n">'+b.nombre+'</div>'
+        +'<div class="pc-tags">'
+        +'<span class="pct '+(linked?'tok':'tna')+'">'+(linked?b.asignaciones.length+' asig.':'Sin asignaci\u00f3n')+'</span>'
+        +(b.estado?'<span class="pct '+eCls+'">'+b.estado+'</span>':'')
+        +'</div></div>';
+    });
+    h+='</div>';
+  });
+  document.getElementById('prog-list').innerHTML=h;
+}
+
+function selProg(id_bips){
+  document.querySelectorAll('.pc').forEach(function(c){c.classList.remove('active');});
+  var card=document.getElementById('pc-'+id_bips);if(card)card.classList.add('active');
+  var b=BIPS.find(function(x){return x.id_bips===id_bips;});
+  if(b)renderFicha(b);
+  setTimeout(function(){document.getElementById('ficha-wrap').scrollIntoView({behavior:'smooth',block:'start'});},30);
+}
+function setPF(f,btn){pfFilter=f;document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');applyF();}
+function filterProgs(){applyF();}
+function applyF(){
+  var q=(document.getElementById('psearch').value||'').toLowerCase();
+  var items=BIPS.filter(function(b){
+    var mq=!q||b.nombre.toLowerCase().includes(q)||String(b.id_bips).includes(q);
+    var mf=true;
+    if(pfFilter==='sub1')mf=b.servicio.includes('SUBSECRETAR\u00cdA DE BIENES NACIONALES');
+    else if(pfFilter==='flags')mf=(b.total_flags||0)>0;
+    else if(pfFilter==='cond0')mf=b.estado==='Sin observaciones';
+    else if(pfFilter==='cond1')mf=b.estado==='Rebajar presupuesto';
+    else if(pfFilter==='cond2')mf=b.estado==='Descontinuar';
+    return mq&&mf;
+  });
+  renderList(items);
+  document.getElementById('ficha-wrap').style.display='none';
+}
+
+function obsTypeCls(tipo){
+  var t=(tipo||'').toLowerCase();
+  if(t==='indicadores')return 'obs-t-indicadores';
+  if(t==='presupuesto')return 'obs-t-presupuesto';
+  if(t.includes('pobla'))return 'obs-t-poblacion';
+  if(t==='estrategia')return 'obs-t-estrategia';
+  if(t.includes('general'))return 'obs-t-general';
+  return 'obs-t-otro';
+}
+
+function fmtIndVal(v){
+  if(v===null||v===undefined)return '\u2014';
+  var s=String(v);
+  if(['S/I','N/C','\u2014'].some(function(x){return s===x;}))return '<span style="color:var(--ink3);font-size:.85rem">'+s+'</span>';
+  var n=parseFloat(s);
+  if(!isNaN(n)&&Math.abs(n)<10&&s.indexOf('.')>=0)return (n*100).toFixed(1)+'%';
+  return s;
+}
+function dimCls(d){
+  if(!d)return '';
+  var dl=d.toLowerCase();
+  if(dl.includes('eficiencia'))return 'eficiencia';
+  if(dl.includes('calidad'))return 'calidad';
+  return '';
+}
+function buildIndCards(list,tipo,bid){
+  if(!list||!list.length)return '<div class="ind-none">Sin indicadores de '+(tipo==='ip'?'prop\u00f3sito':'complementarios')+' registrados.</div>';
+  var color=tipo==='ip'?'var(--a2)':'var(--a3)';
+  var bg=tipo==='ip'?'#E8F0FB':'#E8F5EE';
+  return list.map(function(ind,i){
+    var hist=ind.historico||{};
+    var resRow=['2023','2024','2025'].map(function(yr){
+      var val=hist[yr];
+      return '<div class="ind-res-cell"><div class="ind-res-yr">'+yr+'</div><div class="ind-res-val">'+fmtIndVal(val)+'</div></div>';
+    }).join('');
+    var hasFrac=ind.numerador!==null&&ind.numerador!==undefined&&ind.denominador!==null&&ind.denominador!==undefined;
+    var fracHtml=hasFrac?
+      '<div class="ind-frac">'
+      +'<div style="border:1px solid var(--border);border-radius:var(--r);padding:.3rem .75rem;text-align:center">'
+      +'<div style="font-size:10px;color:var(--ink3);margin-bottom:2px">Numerador</div>'
+      +'<div style="font-family:var(--fd);font-weight:700;font-size:.9rem">'+fmtIndVal(ind.numerador)+'</div></div>'
+      +'<div style="font-size:1.2rem;color:var(--ink3)">/</div>'
+      +'<div style="border:1px solid var(--border);border-radius:var(--r);padding:.3rem .75rem;text-align:center">'
+      +'<div style="font-size:10px;color:var(--ink3);margin-bottom:2px">Denominador</div>'
+      +'<div style="font-family:var(--fd);font-weight:700;font-size:.9rem">'+fmtIndVal(ind.denominador)+'</div></div>'
+      +'<div style="font-size:1.3rem;color:var(--ink3)">=</div>'
+      +'<div style="border:1px solid '+color+';border-radius:var(--r);padding:.3rem .75rem;background:'+bg+';text-align:center">'
+      +'<div style="font-size:10px;color:var(--ink3);margin-bottom:2px">Resultado 2025</div>'
+      +'<div style="font-family:var(--fd);font-weight:700;font-size:.9rem;color:'+color+'">'+fmtIndVal(ind.resultado)+'</div></div>'
+      +'</div>'
+      :(ind.resultado!==null&&ind.resultado!==undefined?
+        '<div style="margin-bottom:.75rem;font-size:13px;color:var(--ink2)">Resultado 2025: <span style="font-family:var(--fd);font-weight:700">'+fmtIndVal(ind.resultado)+'</span></div>':'');
+    return '<div class="ind-card">'
+      +'<div class="ind-card-hdr" onclick="tgInd(this)">'
+      +'<span class="ind-num '+(tipo==='ic'?'ic':'')+'">'+( i+1)+'</span>'
+      +'<span class="ind-name">'+ind.nombre+'</span>'
+      +(ind.dimension?'<span class="ind-dim '+dimCls(ind.dimension)+'">'+ind.dimension+'</span>':'')
+      +'<span class="ind-arr">\u25bc</span>'
+      +'</div>'
+      +'<div class="ind-card-body">'
+      +'<div class="ind-meta-row">'
+      +(ind.unidad?'<span class="ind-meta"><strong>Unidad:</strong> '+ind.unidad+'</span>':'')
+      +(ind.sentido?'<span class="ind-meta"><strong>Sentido:</strong> '+ind.sentido+'</span>':'')
+      +(ind.medios?'<span class="ind-meta"><strong>Fuente:</strong> '+ind.medios.substring(0,80)+(ind.medios.length>80?'\u2026':'')+'</span>':'')
+      +'</div>'
+      +(ind.formula?'<div style="font-size:12px;color:var(--ink2);background:var(--bg);border-radius:var(--r);padding:.5rem .75rem;margin-bottom:.75rem;font-family:monospace">'+ind.formula+'</div>':'')
+      +'<div class="ind-result-row">'+resRow+'</div>'
+      +fracHtml
+      +(ind.just_si?'<div class="ind-just">Sin informaci\u00f3n: '+ind.just_si+'</div>':'')
+      +(ind.nota?'<div style="margin-bottom:.3rem;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)">Nota metodol\u00f3gica</div><div class="ind-nota">'+ind.nota+'</div>':'')
+      +'</div></div>';
+  }).join('');
+}
+
+function tgInd(hdr){hdr.classList.toggle('open');}
+
+function renderFicha(b){
+  var wrap=document.getElementById('ficha-wrap');wrap.style.display='block';
+  var estMap={'Sin observaciones':'est-ok','Rebajar presupuesto':'est-reb','Descontinuar':'est-desc'};
+  var exMap={'Recomendado favorablemente':'ex-ok','Recomendado Favorablemente':'ex-ok','Objetado t\u00e9cnicamente':'ex-obj','No aplica':'ex-na','':'ex-na'};
+  var mon=b.monitoreo||{};
+  var condVal=mon['Condicionar Comisi\u00f3n_1']===1;
+  var indData=IND[String(b.id_bips)]||{ip:[],ic:[]};
+
+  // Tab 1: Ficha
+  var tFicha=''
+    +(b.descripcion?'<div class="desc-block" style="margin-bottom:1.25rem"><div class="desc-label">Descripci\u00f3n del programa</div><div class="desc-descripcion desc-text">'+b.descripcion+'</div></div>':'')
+    +'<div class="igrid">'
+    +'<div class="igc"><div class="ig-l">Gasto ejecutado 2025</div><div class="ig-v">'+(b.gasto_2025?fmtM(b.gasto_2025)+' M$':'\u2014')+'</div></div>'
+    +'<div class="igc"><div class="ig-l">Estado final</div><div class="ig-v sm"><span class="best '+(estMap[b.estado]||'')+'">'+( b.estado||'\u2014')+'</span></div></div>'
+    +'<div class="igc"><div class="ig-l">Pob. beneficiada</div><div class="ig-v">'+(b.pob?b.pob.toLocaleString('es-CL'):'\u2014')+'</div><div style="font-size:11px;color:var(--ink3)">'+(b.unidad||'')+'</div></div>'
+    +'<div class="igc"><div class="ig-l">Ficha Monitoreo</div><div class="ig-v">'+(b.link_monitoreo ? '<a href="'+b.link_monitoreo+'" target="_blank" class="bex ex-mon" style="text-decoration:none; color:white; background:#061453; padding:4px 12px; border-radius:4px; font-weight:bold; font-size:12px; display:inline-block;">Ver Ficha ↗</a>' : '<span class="bex ex-na">—</span>')+'</div></div>'
+    +'</div>'
+    +'<div class="igrid">'
+    +'<div class="igc"><div class="ig-l">Tipo de oferta</div><div class="ig-v sm">'+(b.tipo_oferta||'\u2014')+'</div></div>'
+    +'<div class="igc"><div class="ig-l">Ejecutores externos</div><div class="ig-v sm">'+(b.ejec_ext||'No')+(b.n_ejec>0?' ('+b.n_ejec+')':'')+'</div></div>'
+    +'<div class="igc"><div class="ig-l">A\u00f1o de inicio</div><div class="ig-v sm"><span style="font-weight:700;color:#0072BB">'+(b.year_inicio || 'No registra')+'</span></div></div>'
+    +(b.tipos_ejec?'<div class="igc" style="grid-column:span 2"><div class="ig-l">Tipos de ejecutor</div><div style="font-size:12px;color:var(--ink2);line-height:1.4;margin-top:.2rem">'+b.tipos_ejec+'</div></div>':'')
+    +'</div>'
+    +(b.problema?'<div class="desc-block"><div class="desc-label">Problema principal</div><div class="desc-problema desc-text">'+b.problema+'</div></div>':'')
+    +(b.proposito?'<div class="desc-block"><div class="desc-label">Prop\u00f3sito</div><div class="desc-proposito desc-text">'+b.proposito+'</div></div>':'');
+
+  // Tab 2: Monitoreo
+  var monCols=Object.values(FGROUPS).flat();
+  var nF=monCols.reduce(function(a,c){return a+(mon[c]||0);},0);
+  var tMon='<div class="mon-sum"><div class="mon-n '+(nF>0?'warn':'ok')+'">'+nF+'</div>'
+    +'<div class="mon-lbl">hallazgo'+(nF!==1?'s':'')+' de '+monCols.length+' indicadores revisados</div></div>';
+  Object.entries(FGROUPS).forEach(function(entry){
+    var grp=entry[0],cols=entry[1];
+    tMon+='<div class="mgrp"><div class="mgrp-t">'+grp+'</div>';
+    cols.forEach(function(col){
+      var v=mon[col]!==undefined?mon[col]:0;
+      tMon+='<div class="mrow"><span class="mrow-n">'+(FNAMES[col]||col)+'</span>'+(v===1?'<span class="myes">S\u00ed</span>':'<span class="mno">No</span>')+'</div>';
+    });
+    tMon+='</div>';
+  });
+
+  // Tab 3: Observaciones
+  var obs=b.observaciones||[];
+  var tObs=obs.length?obs.map(function(o){
+    return '<div class="obs-card">'
+      +'<div class="obs-card-hdr"><span class="obs-tipo-badge '+obsTypeCls(o.tipo)+'">'+o.tipo+'</span></div>'
+      +'<div class="obs-card-body">'+o.texto.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div>'
+      +'</div>';
+  }).join(''):'<div class="obs-none">Este programa no tiene observaciones registradas.</div>';
+
+  // Tab 4: Indicadores
+  var tIND='<div class="ind-section">'
+    +'<div class="ind-section-title ip">Indicadores de prop\u00f3sito ('+indData.ip.length+')</div>'
+    +buildIndCards(indData.ip,'ip',b.id_bips)
+    +'</div>'
+    +'<div class="ind-section">'
+    +'<div class="ind-section-title ic">Indicadores complementarios ('+indData.ic.length+')</div>'
+    +buildIndCards(indData.ic,'ic',b.id_bips)
+    +'</div>';
+
+  // Tab 5: Ex Post
+  var ep=b.expost||{};
+  var tEP='';
+  if(!ep.tiene){
+    tEP='<div class="ep-none">Este programa no cuenta con evaluaciones ex post registradas en el sistema.</div>'+(ep.comentario?'<div class="ep-comentario">Nota: '+ep.comentario+'</div>':'');
+  } else {
+    var calCls=ep.calificacion==='Mal desempe\u00f1o'?'ep-cal-mal':ep.calificacion==='Desempe\u00f1o bajo'?'ep-cal-bajo':'ep-cal-bueno';
+    var linkInf=ep.link_informe&&ep.link_informe!=='Sin seguimiento'?'<a class="ep-link ep-link-inf" href="'+ep.link_informe+'" target="_blank">\ud83d\udcc4 Informe final DIPRES</a>':'<span class="ep-link ep-link-none">Sin informe disponible</span>';
+    var linkSeg=ep.link_seguimiento&&ep.link_seguimiento!=='Sin seguimiento'?'<a class="ep-link ep-link-seg" href="'+ep.link_seguimiento+'" target="_blank">\ud83d\udccb Seguimiento de compromisos</a>':'<span class="ep-link ep-link-none">Sin seguimiento</span>';
+    var concs=[['Dise\u00f1o',ep.conclusiones&&ep.conclusiones.dise\u00f1o],['Implementaci\u00f3n',ep.conclusiones&&ep.conclusiones.implementacion],['Eficiencia',ep.conclusiones&&ep.conclusiones.eficiencia],['Eficacia/Resultados',ep.conclusiones&&ep.conclusiones.eficacia]].filter(function(x){return x[1];});
+    var recs=[['Dise\u00f1o',ep.recomendaciones&&ep.recomendaciones.dise\u00f1o],['Implementaci\u00f3n',ep.recomendaciones&&ep.recomendaciones.implementacion],['Eficiencia',ep.recomendaciones&&ep.recomendaciones.eficiencia],['Eficacia/Resultados',ep.recomendaciones&&ep.recomendaciones.eficacia]].filter(function(x){return x[1];});
+    var exante=ep.exante||{};
+    var exHtml=Object.keys(exante).length?'<div class="ep-exante-row">'+Object.entries(exante).map(function(e){var yr=e[0],val=e[1];var cls=val.toLowerCase().includes('objetado')?'ep-exante-ot':val.toLowerCase().includes('favorab')?'ep-exante-ok':'ep-exante-na';var sh=val.toLowerCase().includes('objetado')?'OT':val.toLowerCase().includes('favorab')?'RF':'\u2014';return '<div class="ep-exante-chip"><span class="ep-exante-yr">'+yr+'</span><span class="ep-exante-val '+cls+'">'+sh+'</span></div>';}).join('')+'</div>'+(ep.evolucion_exante?'<div style="font-size:12px;color:var(--ink3);margin-top:.25rem">'+ep.evolucion_exante+'</div>':''):'<span style="font-size:12px;color:var(--ink3)">Sin datos ex ante</span>';
+    var compHtml=ep.compromisos&&ep.compromisos.length?'<table class="ep-compromisos"><thead><tr><th>Per\u00edodo</th><th>Calificaci\u00f3n</th><th>Ratio</th></tr></thead><tbody>'+ep.compromisos.map(function(c){return '<tr><td>'+c.periodo+'</td><td>'+(c.calificacion||'\u2014')+'</td><td class="ep-ratio">'+(c.ratio!=null?(c.ratio*100).toFixed(0)+'%':'\u2014')+'</td></tr>';}).join('')+'</tbody></table><div style="font-size:12px;color:var(--ink3);margin-top:.25rem">Calificaci\u00f3n final: <strong>'+(ep.calificacion_compromisos||'\u2014')+'</strong></div>':'<div style="font-size:13px;color:var(--ink3)">'+(ep.calificacion_compromisos||'Sin compromisos registrados')+'</div>';
+    var gastoHtml=ep.gasto_ejecutado&&Object.keys(ep.gasto_ejecutado).length?'<table class="ep-compromisos"><thead><tr><th>A\u00f1o</th><th>Gasto ejecutado (M$)</th></tr></thead><tbody>'+Object.entries(ep.gasto_ejecutado).map(function(e){return '<tr><td>'+e[0]+'</td><td style="font-family:var(--fd);font-weight:600">$'+Math.round(e[1]).toLocaleString('es-CL')+'</td></tr>';}).join('')+'</tbody></table>'+(ep.evolucion_gasto?'<div class="ep-evol">'+ep.evolucion_gasto+'</div>':''):'';
+    tEP='<div class="ep-header"><div><div class="ep-eval-name">'+(ep.nombre_eval||'Evaluaci\u00f3n ex post')+'</div>'
+      +'<div class="ep-meta">A\u00f1o: '+(ep.a\u00f1o||'\u2014')+' \u00b7 L\u00ednea: '+(ep.linea||'\u2014')+(ep.presupuesto_nominal?' \u00b7 Presupuesto: <span class="ep-pnom">$'+Math.round(ep.presupuesto_nominal).toLocaleString('es-CL')+' M$</span>':'')+'</div></div>'
+      +'<span class="ep-cal '+calCls+'">'+(ep.calificacion||'\u2014')+'</span></div>'
+      +'<div class="ep-links">'+linkInf+linkSeg+'</div>'
+      +(concs.length?'<div class="ep-section"><div class="ep-sec-title">Conclusiones</div>'+concs.map(function(x){return '<div class="ep-block"><div class="ep-block-lbl">'+x[0]+'</div><div class="ep-block-txt">'+x[1]+'</div></div>';}).join('')+'</div>':'')
+      +(recs.length?'<div class="ep-section"><div class="ep-sec-title">Recomendaciones</div>'+recs.map(function(x){return '<div class="ep-block"><div class="ep-block-lbl">'+x[0]+'</div><div class="ep-block-txt">'+x[1]+'</div></div>';}).join('')+'</div>':'')
+      +'<div class="ep-section"><div class="ep-sec-title">Seguimiento de compromisos</div>'+compHtml+(ep.evolucion_ratios?'<div class="ep-evol" style="margin-top:.5rem">'+ep.evolucion_ratios+'</div>':'')+'</div>'
+      +(gastoHtml?'<div class="ep-section"><div class="ep-sec-title">Gasto ejecutado (M$)</div>'+gastoHtml+'</div>':'')
+      +(ep.evolucion_ppto?'<div class="ep-section"><div class="ep-sec-title">Evoluci\u00f3n presupuesto proyecto de ley</div><div class="ep-evol">'+ep.evolucion_ppto+'</div></div>':'')
+      +'<div class="ep-section"><div class="ep-sec-title">Evaluaciones ex ante</div>'+exHtml+'</div>'
+      +(ep.comentario?'<div class="ep-comentario">Nota: '+ep.comentario+'</div>':'');
+  }
+
+  // Tab 6: Ex Ante
+  var eaHist=b.exante_hist||[];
+  var tEA='';
+  if(!eaHist.length){
+    tEA='<div class="ea-none">Este programa no cuenta con evaluaciones ex ante registradas en el sistema.</div>';
+  } else {
+    var nRF=eaHist.filter(function(e){return e.resultado.includes('Favorable');}).length;
+    var nOT=eaHist.filter(function(e){return e.resultado.includes('Objetado');}).length;
+    var last=eaHist[eaHist.length-1];
+    tEA='<div class="ea-summary">'
+      +'<div class="ea-sum-box"><div class="ea-sum-n">'+eaHist.length+'</div><div class="ea-sum-l">Evaluaci\u00f3n'+(eaHist.length>1?'es':'')+'</div></div>'
+      +(nRF>0?'<div class="ea-sum-box"><div class="ea-sum-n" style="color:var(--a3)">'+nRF+'</div><div class="ea-sum-l">RF</div></div>':'')
+      +(nOT>0?'<div class="ea-sum-box"><div class="ea-sum-n" style="color:var(--a1)">'+nOT+'</div><div class="ea-sum-l">OT</div></div>':'')
+      +'<div class="ea-sum-box" style="flex:1;text-align:left"><div style="font-size:11px;color:var(--ink3);margin-bottom:3px">\u00daltima evaluaci\u00f3n</div>'
+      +'<span class="'+(last.resultado.includes('Favorable')?'ea-rf':'ea-ot')+'">'+last.resultado+'</span>'
+      +'<span style="font-size:11px;color:var(--ink3);margin-left:6px">'+last.periodo+'</span></div></div>'
+      +'<div style="border:1px solid var(--border);border-radius:var(--r);overflow:hidden">'
+      +'<table class="ea-table"><thead><tr><th>Per\u00edodo</th><th>Tipo</th><th>Resultado</th></tr></thead>'
+      +'<tbody>'+eaHist.map(function(e){return '<tr><td style="font-family:var(--fd);font-weight:600">'+e.periodo+'</td><td><span class="ea-tipo">'+e.tipo+'</span></td><td><span class="'+(e.resultado.includes('Favorable')?'ea-rf':'ea-ot')+'">'+e.resultado+'</span></td></tr>';}).join('')+'</tbody>'
+      +'</table></div>';
+  }
+
+  // Tab 7: Por region
+  var RD=b.region_data||{};
+  var totalR=Object.values(RD).reduce(function(a,v){return a+v;},0);
+  var maxR=Math.max.apply(null,Object.values(RD).filter(function(v){return v>0;}).concat([1]));
+  var tREG='';
+  if(!totalR){
+    tREG='<div class="reg-none">No se registran beneficiarios por regi\u00f3n para este programa.</div><p class="reg-source">Fuente: Monitoreo 2025.</p>';
+  } else {
+    var unidad = b.unidad || 'beneficiarios';
+    var rows = REG_ORDER.map(function(reg) {
+      var v = RD[reg] || 0;
+      var intensity = v > 0 ? (v / maxR) : 0;
+      var bgColor = v > 0 ? 'hsla(' + (215 - (intensity * 20)) + ', ' + (40 + (intensity * 40)) + '%, ' + (95 - (intensity * 50)) + '%, 1)' : 'transparent';
+      var txtColor = intensity > 0.5 ? '#fff' : 'var(--ink)';
+
+      return '<tr>'
+        + '<td style="padding:10px 8px; border-bottom:1px solid #eee; display:flex; align-items:center; gap:10px">' 
+          + (v > 0 ? '<div style="width:10px; height:10px; border-radius:50%; background:' + bgColor + '; border:1px solid rgba(0,0,0,0.1)"></div>' : '') + reg + '</td>'
+        + '<td style="text-align:right; padding:10px 8px; border-bottom:1px solid #eee; font-family:var(--fd); font-weight:'+(v>0?'600':'400')+'">' + (v > 0 ? v.toLocaleString('es-CL') : '\u2014') + '</td>'
+        + '<td style="text-align:right; padding:10px 12px; border-bottom:1px solid #eee; width:100px">'
+          + (v > 0 ? '<div style="background:' + bgColor + '; color:' + txtColor + '; padding:4px 8px; border-radius:6px; font-size:11px; font-weight:700; display:inline-block; min-width:45px; box-shadow: 0 1px 2px rgba(0,0,0,0.1)">' + ((v / totalR) * 100).toFixed(1) + '%</div>' : '') 
+        + '</td>'
+        + '</tr>';
+    }).join('');
+
+tREG = '<div style="padding:10px; max-width:800px; margin:0 auto">'
+        + '<div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:15px; padding:0 8px; border-bottom: 2px solid var(--a2); pb:10px">'
+          + '<div style="font-size:16px; font-weight:700; color:var(--ink)">' 
+            + 'Total: <span style="color:var(--a2)">' + totalR.toLocaleString('es-CL') + '</span> ' + unidad 
+          + '</div>'
+          + '<div style="font-size:10px; color:var(--ink3)">Fuente: Monitoreo 2025</div>'
+        + '</div>'
+        + '<table style="width:100%; border-collapse:collapse; font-size:13px">'
+          + '<thead style="background:var(--bg2)"><tr>'
+            + '<th style="text-align:left; padding:12px 8px; color:var(--ink2); text-transform:uppercase; font-size:10px; letter-spacing:1px">Regi\u00f3n</th>'
+            + '<th style="text-align:right; padding:12px 8px; color:var(--ink2); text-transform:uppercase; font-size:10px; letter-spacing:1px">Cantidad (' + unidad + ')</th>'
+            + '<th style="text-align:right; padding:12px 8px; color:var(--ink2); text-transform:uppercase; font-size:10px; letter-spacing:1px">Peso Relativo</th>'
+          + '</tr></thead>'
+          + '<tbody>' + rows + '</tbody>'
+        + '</table>'
+      + '</div>';
+  }
+
+  // Tab 8: Presupuesto
+var totalM=b.asignaciones?b.asignaciones.reduce(function(a,x){return a+(x.monto||0);},0):0;
+  var tPpto='';
+
+  // Buscar nota del caso para este BIP
+  var nota = (typeof TAB_PPTO !== 'undefined') ? TAB_PPTO.find(function(n){return n.id_bips===b.id_bips;}) : null;
+  if(nota && nota.texto){
+    tPpto += '<div class="nota-caso"><strong>Nota:</strong> '+nota.texto+'</div>';
+  }
+
+  if(!b.asignaciones||b.asignaciones.length===0){
+    tPpto+='<div class="no-asig">No se ha identificado una asignaci\u00f3n presupuestaria espec\u00edfica para este programa en la Ley 2026.</div>';
+  } else {
+    if(b.asignaciones.length>1)tPpto+='<div style="font-size:13px;color:var(--ink3);margin-bottom:.75rem">'+b.asignaciones.length+' asignaciones \u00b7 Total: <strong style="color:var(--ink)">'+fmtM(totalM)+'</strong> M$</div>';
+    b.asignaciones.forEach(function(a){
+      tPpto+='<div class="ar" onclick="goToAsig(\''+a.id_pres+'\')">'
+        +'<div class="ar-code">'+a.id_pres+'</div>'
+        +'<div class="ar-info"><div class="ar-n">'+a.denominacion+'</div><div class="ar-loc">'+a.cap_nom+' \u00b7 '+a.prog_nom+'</div></div>'
+        +'<div class="ar-m">'+fmtK(a.monto)+'</div>'
+        +'</div>';
+    });
+    tPpto+='<div style="font-size:11px;color:var(--ink3);margin-top:.5rem">Cifras en miles de pesos (M$). Haz click en una asignaci\u00f3n para verla en la ley.</div>';
+  }
+
+  var monLbl=nF>0?'Monitoreo <span class="obs-count">'+nF+'</span>':'Monitoreo';
+  var epLbl=(b.expost&&b.expost.tiene)?'Ex Post \u25cf':'Ex Post';
+  var eaLbl=(b.exante_hist&&b.exante_hist.length)?'Ex Ante \u25cf':'Ex Ante';
+  var obsLbl=obs.length>0?'Observaciones <span class="obs-count">'+obs.length+'</span>':'Observaciones';
+  var indLbl='Indicadores';
+
+  wrap.innerHTML='<div class="ficha">'
+    +'<div class="ficha-hdr">'
+    +'<div class="ficha-bdg">BIPS '+b.id_bips+'</div>'
+    +'<div><div class="ficha-title">'+b.nombre+'</div><div class="ficha-srv">'+b.servicio+'</div></div>'
+    +'</div>'
+    +'<div class="itabs">'
+    +'<button class="itab active" onclick="swItab(this,\'tp-f-'+b.id_bips+'\')">Ficha</button>'
+    +'<button class="itab" onclick="swItab(this,\'tp-m-'+b.id_bips+'\')">'+monLbl+'</button>'
+    +'<button class="itab" onclick="swItab(this,\'tp-o-'+b.id_bips+'\')">'+obsLbl+'</button>'
+    +'<button class="itab" onclick="swItab(this,\'tp-i-'+b.id_bips+'\')">'+indLbl+'</button>'
+    +'<button class="itab" onclick="swItab(this,\'tp-e-'+b.id_bips+'\')">'+epLbl+'</button>'
+    +'<button class="itab" onclick="swItab(this,\'tp-ea-'+b.id_bips+'\')">'+eaLbl+'</button>'
+    +'<button class="itab" onclick="swItab(this,\'tp-r-'+b.id_bips+'\')">Por regi\u00f3n</button>'
+    +'<button class="itab" onclick="swItab(this,\'tp-p-'+b.id_bips+'\')">Presupuesto 2026</button>'
+    +'</div>'
+    +'<div class="itab-p active" id="tp-f-'+b.id_bips+'">'+tFicha+'</div>'
+    +'<div class="itab-p" id="tp-m-'+b.id_bips+'">'+tMon+'</div>'
+    +'<div class="itab-p" id="tp-o-'+b.id_bips+'">'+tObs+'</div>'
+    +'<div class="itab-p" id="tp-i-'+b.id_bips+'">'+tIND+'</div>'
+    +'<div class="itab-p" id="tp-e-'+b.id_bips+'">'+tEP+'</div>'
+    +'<div class="itab-p" id="tp-ea-'+b.id_bips+'">'+tEA+'</div>'
+    +'<div class="itab-p" id="tp-r-'+b.id_bips+'">'+tREG+'</div>'
+    +'<div class="itab-p" id="tp-p-'+b.id_bips+'">'+tPpto+'</div>'
+    +'</div>';
+}
+
+function swItab(btn,pid){
+  var f=btn.closest('.ficha');
+  f.querySelectorAll('.itab').forEach(function(t){t.classList.remove('active');});
+  f.querySelectorAll('.itab-p').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');document.getElementById(pid).classList.add('active');
+}
+
+buildNav();leyBuilt=true;
+// LANZAR AL FINAL DEL SCRIPT
+actualizarHeaderStats(BIPS, TREE);
+
+</script>
+</body>
+</html>

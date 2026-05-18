@@ -353,7 +353,7 @@ body{font-family:var(--fb);
   flex-shrink: 0;
 }
 .bchip-n{font-size:12px;color:var(--ink);font-weight:500;flex:1}
-.bchip-s{font-size:10px;color:var(--ink3);white-space:nowrap}
+.bchip-s{font-size:10px;color:var(--ink3);min-width: 0;}
 .no-bips{font-size:12px;color:var(--ink3);font-style:italic}
 
 /* PROGRAMAS */
@@ -362,7 +362,7 @@ body{font-family:var(--fb);
 .grp-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .grp-n{font-family:var(--fd);font-size:13px;font-weight:700;color:#F4F1EB}
 .grp-c{font-size:12px;color:rgba(244,241,235,.4);margin-left:auto}
-.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin-bottom:.5rem}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin-bottom:.5rem;   padding-bottom: 1.5rem; border-bottom: 1px solid rgba(23,50,119,0.25); }
 .pc{background:var(--program-card-bg);border:1px solid var(--program-card-border);border-radius:var(--rl);padding:.9rem 1.1rem;cursor:pointer;transition:border-color .15s,box-shadow .15s;position:relative}
 .pc:hover{border-color:var(--a1);box-shadow:0 0 0 2px rgba(200,80,26,.08)}
 .pc.active{border-color:var(--a1);background:#FEF6F2}
@@ -375,7 +375,7 @@ body{font-family:var(--fb);
 .twrn{background:#FEF3D6;color:#8A5A00}.tbad{background:#FAE0D6;color:#993C1D}
 .fc{position:absolute;top:.75rem;right:.75rem;font-family:var(--fd);font-size:10px;font-weight:700;background:#FAE0D6;color:#993C1D;border-radius:20px;padding:2px 7px}
 /* FICHA */
-.ficha{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);margin-top:1rem;overflow:hidden}
+.ficha{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);margin-top:3rem;overflow:hidden;padding-top: 0rem;border-top: 1px solid rgba(23,50,119,0.25)}
 .ficha-hdr{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);background:var(--program-ficha-header);display:flex;align-items:flex-start;gap:1rem}
 .ficha-bdg{font-family:var(--fd);font-size:12px;font-weight:700;color:var(--a1);background:var(--bg);border:1px solid rgba(200,80,26,.2);border-radius:var(--r);padding:4px 10px;white-space:nowrap;flex-shrink:0}
 .ficha-title{font-family:var(--fd);font-size:1rem;font-weight:700;color:var(--ink);line-height:1.3}
@@ -396,7 +396,7 @@ body{font-family:var(--fb);
 .ex-ok{background:#DCE8F5;color:#185FA5}.ex-na{background:var(--bg);color:var(--ink3)}.ex-obj{background:#FAE0D6;color:#993C1D}
 .desc-block{margin-bottom:1.25rem}
 .desc-label{font-family:var(--fd);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:.4rem}
-.desc-text{font-size:13px;color:var(--ink2);line-height:1.6}
+.desc-text{font-size:13px;color:var(--ink2);line-height:1.6; text-align: justify;}
 .desc-problema{background:#FEF6F2;border-left:3px solid var(--a1);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem}
 .desc-proposito{background:#F0F5FF;border-left:3px solid var(--a2);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem}
 .desc-descripcion{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:.75rem 1rem}
@@ -533,10 +533,8 @@ body{font-family:var(--fb);
 
 /* Caja "tipo de caso + nota" arriba de la pestaña Presupuesto */
 .caso-box {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 10px 14px;
+  display: block;                          /* antes: flex */
+  padding: 12px 16px;                      /* un poco más de aire */
   margin-bottom: 12px;
   background: #f5f7fb;
   border: 1px solid rgba(23,50,119,0.15);
@@ -544,34 +542,35 @@ body{font-family:var(--fb);
 }
 
 .caso-chip {
-  display: inline-block;
+  display: block;
   font-family: var(--fd);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 20px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  margin-top: 1px;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid;
+  width: max-content;             /* el borde solo bajo el texto, no toda la fila */
 }
 
 .caso-nota {
   font-size: 13px;
   color: var(--ink2);
   line-height: 1.5;
-  flex: 1;
 }
 
 /* Variantes de color del chip — uno por cada tipo de caso */
-.caso-chip-a { background: #DCE8F5; color: #185FA5; }   /* azul */
-.caso-chip-b { background: #D6EEE4; color: #0F6E56; }   /* verde */
-.caso-chip-c { background: #FEF3D6; color: #8A5A00; }   /* amarillo */
-.caso-chip-d { background: #FAE0D6; color: #993C1D; }   /* rojo */
-.caso-chip-e { background: #F0EBF8; color: #5A3A8E; }   /* morado */
-.caso-chip-f { background: #F1EFE8; color: #4A4540; }   /* gris */
+.caso-chip-1 { color: #185FA5; border-bottom-color: #185FA5; }
+.caso-chip-2 { color: #0F6E56; border-bottom-color: #0F6E56; }
+.caso-chip-3 { color: #8A5A00; border-bottom-color: #8A5A00; }
+.caso-chip-4 { color: #993C1D; border-bottom-color: #993C1D; }
+.caso-chip-5 { color: #5A3A8E; border-bottom-color: #5A3A8E; }
+.caso-chip-6 { color: #4A4540; border-bottom-color: #4A4540; }
 
+.ficha-hdr {
+  scroll-margin-top: 70px;   /* el alto de tu nav sticky + un poco de aire */
+}
 </style>
 </head>
 <body>
@@ -675,7 +674,7 @@ const fmtK = n => {if(!n||n===0)return '\u2014';return '$'+Math.round(n).toLocal
 var TIPOS_CASO = {
   1 : { label: "Caso 1", nota: "Este programa es financiado exclusivamente por la asignación aquí señalada. Esta asignación sólo financia este programa." },
   2 : { label: "Caso 2", nota: "Este programa es financiado exclusivamente por las asignaciones señaladas. Estas asignaciones sólo financian este programa." },
-  3 : { label: "Caso 3", nota: "Este programa es financiado exclusivamente por la asignación señaladas. Sin embargo, esta asignación también financia otros programas, sin que sea posible distinguir el presupuesto de este programa en particular." },
+  3 : { label: "Caso 3", nota: "Este programa es financiado exclusivamente por la asignación señalada. Sin embargo, esta asignación también financia otros programas, sin que sea posible distinguir el presupuesto de este programa en particular." },
   4 : { label: "Caso 4", nota: "Este programa es financiado exclusivamente por las asignaciones señaladas. Sin embargo, esta asignación también financia otros programas, sin que sea posible distinguir el presupuesto de este programa en particular." },
   5 : { label: "Caso 5", nota: "Este programa es un programa presupuestario en si mismo." },
   6 : { label: "Caso 6", nota: "No es posible identificar la fuente de financiamiento para este programa." }
@@ -760,21 +759,36 @@ function tgBips(el,id_pres,e){
   document.querySelectorAll('.asig').forEach(a=>a.classList.remove('active'));
   if(!open){panel.style.display='block';el.classList.add('active');}
 }
-function goToProg(id_bips,e){
-  if(e)e.stopPropagation();
-  showTab('programas',document.querySelectorAll('.ntab')[1]);
-  if(!progsBuilt){progsBuilt=true;renderList(BIPS);}
-  setTimeout(function(){
-    var b=BIPS.find(function(x){return x.id_bips===id_bips;});
-    if(b)renderFicha(b);
-    var card=document.getElementById('pc-'+id_bips);
-    if(card){document.querySelectorAll('.pc').forEach(function(c){c.classList.remove('active');});card.classList.add('active');card.scrollIntoView({behavior:'smooth',block:'center'});}
-    setTimeout(function(){document.getElementById('ficha-wrap').scrollIntoView({behavior:'smooth',block:'start'});},150);
-  },100);
+function goToProg(id_bips, e){
+  if(e) e.stopPropagation();
+  showTab('programas', document.querySelectorAll('.ntab')[1]);
+  if(!progsBuilt){ progsBuilt = true; renderList(BIPS); }
+
+  // Esperar a que la pestaña Programas sea visible y el DOM esté listo
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      // 1. Renderizar la ficha
+      var b = BIPS.find(function(x){return x.id_bips === id_bips;});
+      if(b) renderFicha(b);
+
+      // 2. Marcar la card como activa (sin scrollear todavía)
+      var card = document.getElementById('pc-'+id_bips);
+      if(card){
+        document.querySelectorAll('.pc').forEach(function(c){c.classList.remove('active');});
+        card.classList.add('active');
+      }
+
+      // 3. UN solo scroll, al encabezado de la ficha
+      requestAnimationFrame(function(){
+        var hdr = document.querySelector('.ficha-hdr');
+        if(hdr) hdr.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+  });
 }
 function goToAsig(id_pres){
   var pts=id_pres.split('-');var capId=parseInt(pts[1]),progId=parseInt(pts[2]),subtId=parseInt(pts[3]),itemId=parseInt(pts[4]);
-  showTab('ley',document.querySelectorAll('.ntab')[1]);
+  showTab('ley',document.querySelectorAll('.ntab')[0]);
   setTimeout(function(){
     var cap=TREE.find(function(c){return c.id===capId;});
     var prog=cap&&cap.programas.find(function(p){return p.id===progId;});
@@ -885,7 +899,14 @@ function selProg(id_bips){
   var card=document.getElementById('pc-'+id_bips);if(card)card.classList.add('active');
   var b=BIPS.find(function(x){return x.id_bips===id_bips;});
   if(b)renderFicha(b);
-  setTimeout(function(){document.getElementById('ficha-wrap').scrollIntoView({behavior:'smooth',block:'start'});},30);
+
+  // Esperar a que el navegador termine de pintar antes de hacer scroll
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      var hdr = document.querySelector('.ficha-hdr');
+      if(hdr) hdr.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
 }
 function setPF(f,btn){pfFilter=f;document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');applyF();}
 function filterProgs(){applyF();}

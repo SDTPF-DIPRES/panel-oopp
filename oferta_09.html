@@ -638,8 +638,8 @@ body{font-family:var(--fb);
     <button class="fbtn" onclick="setPF('sub5',this)">Subse. Ed. Parvularia</button>
     <button class="fbtn" onclick="setPF('sub6',this)">Subse. Ed. Superior</button>
     <button class="fbtn" onclick="setPF('cond0',this)">Sin observaciones</button>
-    <button class="fbtn" onclick="setPF('cond1',this)">Rebajar presupuesto</button>
-    <button class="fbtn" onclick="setPF('cond2',this)">Descontinuar</button>
+    <button class="fbtn" onclick="setPF('cond1',this)">Sugerencia de ajuste</button>
+    <button class="fbtn" onclick="setPF('cond2',this)">Sugerencia de descontinuar</button>
     <button class="fbtn" onclick="setPF('flags',this)">Con hallazgos</button>
   </div>
   <div id = "conteo-resumen" style = "padding: 10px 8px; font-size: 13px; color: var(--ink2); border-bottom: 1px solid #eee; margin-bottom: 10px; font-weight: 600;">
@@ -678,6 +678,9 @@ var TIPOS_CASO = {
   6 : { label: "Caso 6", nota: "No es posible identificar la fuente de financiamiento para este programa." }
 };
 /* NOTAS DE CASOS*/
+/*TAGS DE SUGERENCIAS*/
+var estTxt={'Sin observaciones':'Sin observaciones','Rebajar presupuesto':'Sugerencia de ajuste','Descontinuar':'Sugerencia de descontinuar'};
+/*TAGS DE SUGERENCIAS*/
 
 let leyBuilt=false, progsBuilt=false;
 function showTab(n,el){
@@ -882,7 +885,7 @@ function renderList(data){
         +'<div class="pc-n">'+b.nombre+'</div>'
         +'<div class="pc-tags">'
         +'<span class="pct '+(linked?'tok':'tna')+'">'+(linked?b.asignaciones.length+' asig.':'Sin asignaci\u00f3n')+'</span>'
-        +(b.estado?'<span class="pct '+eCls+'">'+b.estado+'</span>':'')
+        +(b.estado?'<span class="pct '+eCls+'">'+(estTxt[b.estado]||b.estado)+'</span>':'')
         +'</div></div>';
     });
     h+='</div>';
@@ -1016,7 +1019,7 @@ function renderFicha(b){
     +(b.descripcion?'<div class="desc-block" style="margin-bottom:1.25rem"><div class="desc-label">Descripci\u00f3n del programa</div><div class="desc-descripcion desc-text">'+b.descripcion+'</div></div>':'')
     +'<div class="igrid">'
     +'<div class="igc"><div class="ig-l">Gasto ejecutado 2025</div><div class="ig-v">'+(b.gasto_2025?fmtM(b.gasto_2025)+' M$':'\u2014')+'</div></div>'
-    +'<div class="igc"><div class="ig-l">Estado final</div><div class="ig-v sm"><span class="best '+(estMap[b.estado]||'')+'">'+( b.estado||'\u2014')+'</span></div></div>'
+    +'<div class="igc"><div class="ig-l">Estado final</div><div class="ig-v sm"><span class="best '+(estMap[b.estado]||'')+'">'+( estTxt[b.estado]||'\u2014')+'</span></div></div>'
     +'<div class="igc"><div class="ig-l">Pob. beneficiada</div><div class="ig-v">'+(b.pob?b.pob.toLocaleString('es-CL'):'\u2014')+'</div><div style="font-size:11px;color:var(--ink3)">'+(b.unidad||'')+'</div></div>'
     +'<div class="igc"><div class="ig-l">Ficha Monitoreo</div><div class="ig-v">'+(b.link_monitoreo ? '<a href="'+b.link_monitoreo+'" target="_blank" class="bex ex-mon" style="text-decoration:none; color:white; background:#061453; padding:4px 12px; border-radius:4px; font-weight:bold; font-size:12px; display:inline-block;">Ver Ficha ↗</a>' : '<span class="bex ex-na">—</span>')+'</div></div>'
     +'</div>'

@@ -571,6 +571,50 @@ body{font-family:var(--fb);
 .ficha-hdr {
   scroll-margin-top: 70px;   /* el alto de tu nav sticky + un poco de aire */
 }
+/* BOTONES DE FILTRO */
+.fbtns-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+}
+.fbtn-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.fbtn-label {
+  flex-shrink: 0;
+  width: 130px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ink3, #666);
+}
+.fbtn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex: 1;
+}
+
+.fbtn-clear {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--ink3, #666);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.fbtn-clear:hover {
+  color: var(--ink, #061453);
+  border-color: var(--border-soft, rgba(6,20,83,0.2));
+}
+
+/* BOTONES DE FILTRO */
 </style>
 </head>
 <body>
@@ -629,18 +673,38 @@ body{font-family:var(--fb);
 <div id="panel-programas" class="panel">
   <div class="note">Haz click en un programa para ver su ficha completa. <strong>Cifras en miles de pesos (M$).</strong></div>
   <div class="sbar"><input type="text" class="sinput" id="psearch" placeholder="Buscar por nombre o ID BIPS..." oninput="filterProgs()"></div>
-    <div class="fbtns">
-    <button class="fbtn active" id="pf-all" onclick="setPF('all',this)">Todos</button>
-    <button class="fbtn" onclick="setPF('sub1',this)">CNR</button>
-    <button class="fbtn" onclick="setPF('sub2',this)">CONAF</button>
-    <button class="fbtn" onclick="setPF('sub3',this)">INDAP</button>
-    <button class="fbtn" onclick="setPF('sub4',this)">SAG</button>
-    <button class="fbtn" onclick="setPF('sub5',this)">Subse. Agricultura</button>
-    <button class="fbtn" onclick="setPF('cond0',this)">Sin observaciones</button>
-    <button class="fbtn" onclick="setPF('cond1',this)">Sugerencia de ajuste</button>
-    <button class="fbtn" onclick="setPF('cond2',this)">Sugerencia de descontinuar</button>
-    <button class="fbtn" onclick="setPF('flags',this)">Con hallazgos</button>
+<div class="fbtns-wrap">
+
+  <div class="fbtn-row">
+    <span class="fbtn-label">Por Servicio</span>
+    <div class="fbtn-group" data-group="serv">
+      <button class="fbtn active" data-default="1" onclick="setPF('serv','all',this)">Todos</button>
+        <button class="fbtn" onclick="setPF('serv','sub1',this)">CNR</button>
+  <button class="fbtn" onclick="setPF('serv','sub2',this)">CONAF</button>
+  <button class="fbtn" onclick="setPF('serv','sub3',this)">INDAP</button>
+  <button class="fbtn" onclick="setPF('serv','sub4',this)">SAG</button>
+  <button class="fbtn" onclick="setPF('serv','sub5',this)">Subse. Agricultura</button>
+    </div>
   </div>
+
+  <div class="fbtn-row">
+    <span class="fbtn-label">Por Recomendación</span>
+    <div class="fbtn-group" data-group="reco">
+      <button class="fbtn active" data-default="1" onclick="setPF('reco','all',this)">Todas</button>
+      <button class="fbtn" onclick="setPF('reco','cond0',this)">Sin observaciones</button>
+      <button class="fbtn" onclick="setPF('reco','cond1',this)">Recomendación de ajuste</button>
+      <button class="fbtn" onclick="setPF('reco','cond2',this)">Recomendación de descontinuar</button>
+    </div>
+  </div>
+
+  <div class="fbtn-row">
+    <span class="fbtn-label"></span>
+    <button class="fbtn-clear" onclick="clearFilters()">↺ Limpiar filtros</button>
+  </div>
+
+</div>
+
+</div>
   <div id = "conteo-resumen" style = "padding: 10px 8px; font-size: 13px; color: var(--ink2); border-bottom: 1px solid #eee; margin-bottom: 10px; font-weight: 600;">
     Cargando programas...
   </div>
@@ -672,13 +736,13 @@ var TIPOS_CASO = {
   1 : { label: "Caso 1", nota: "Este programa es financiado exclusivamente por la asignación aquí señalada. Esta asignación sólo financia este programa." },
   2 : { label: "Caso 2", nota: "Este programa es financiado exclusivamente por las asignaciones señaladas. Estas asignaciones sólo financian este programa." },
   3 : { label: "Caso 3", nota: "Este programa es financiado exclusivamente por la asignación señalada. Sin embargo, esta asignación también financia otros programas, sin que sea posible distinguir el presupuesto de este programa en particular." },
-  4 : { label: "Caso 4", nota: "Este programa es financiado exclusivamente por las asignaciones señaladas. Sin embargo, esta asignación también financia otros programas, sin que sea posible distinguir el presupuesto de este programa en particular." },
+  4 : { label: "Caso 4", nota: "Este programa es financiado exclusivamente por las asignaciones señaladas. Sin embargo, esta asignaciones también financian otros programas, sin que sea posible distinguir el presupuesto de este programa en particular." },
   5 : { label: "Caso 5", nota: "Este programa es un programa presupuestario en si mismo." },
   6 : { label: "Caso 6", nota: "No es posible identificar la fuente de financiamiento para este programa." }
 };
 /* NOTAS DE CASOS*/
 /*TAGS DE SUGERENCIAS*/
-var estTxt={'Sin observaciones':'Sin observaciones','Rebajar presupuesto':'Sugerencia de ajuste','Descontinuar':'Sugerencia de descontinuar'};
+var estTxt={'Sin observaciones':'Sin observaciones','Rebajar presupuesto':'Recomendación de ajuste','Descontinuar':'Recomendación de descontinuar'};
 /*TAGS DE SUGERENCIAS*/
 
 let leyBuilt=false, progsBuilt=false;
@@ -905,23 +969,72 @@ function selProg(id_bips){
     });
   });
 }
-function setPF(f,btn){pfFilter=f;document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');applyF();}
+
+var pfServ='all';   // filtro de servicio: 'all' o 'sub1', 'sub2', etc.
+var pfReco='all';   // filtro de recomendación: 'all', 'cond0', 'cond1', 'cond2'
+
+function setPF(grupo, valor, btn){
+  if(grupo==='serv'){
+    pfServ = valor;
+    // desactivar solo botones del grupo de servicios
+    document.querySelectorAll('.fbtn-group[data-group="serv"] .fbtn').forEach(function(b){b.classList.remove('active');});
+  } else if(grupo==='reco'){
+    pfReco = valor;
+    document.querySelectorAll('.fbtn-group[data-group="reco"] .fbtn').forEach(function(b){b.classList.remove('active');});
+  }
+  if(btn) btn.classList.add('active');
+  applyF();
+}
+
+function clearFilters(){
+  pfServ='all';
+  pfReco='all';
+  document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active');});
+  // marcar los dos "Todos" como activos
+  document.querySelectorAll('.fbtn[data-default="1"]').forEach(function(b){b.classList.add('active');});
+  document.getElementById('psearch').value='';
+  applyF();
+}
+
+function applyF(){
+  var q=(document.getElementById('psearch').value||'').toLowerCase();
+  var items=BIPS.filter(function(b){
+    var mq=!q||b.nombre.toLowerCase().includes(q)||String(b.id_bips).includes(q);
+
+    // filtro de servicio
+    var ms=true;
+    if(pfServ==='sub1')ms=b.servicio.includes('SUBSTRING_SUB1');
+    else if(pfServ==='sub2')ms=b.servicio.includes('SUBSTRING_SUB2');
+   
+
+    // filtro de recomendación
+    var mr=true;
+    if(pfReco==='cond0')mr=b.estado==='Sin observaciones';
+    else if(pfReco==='cond1')mr=b.estado==='Rebajar presupuesto';
+    else if(pfReco==='cond2')mr=b.estado==='Descontinuar';
+
+    return mq && ms && mr;
+  });
+  renderList(items);
+  document.getElementById('ficha-wrap').style.display='none';
+}
+
 function filterProgs(){applyF();}
 function applyF(){
   var q=(document.getElementById('psearch').value||'').toLowerCase();
   var items=BIPS.filter(function(b){
     var mq=!q||b.nombre.toLowerCase().includes(q)||String(b.id_bips).includes(q);
-    var mf=true;
-    if(pfFilter==='sub1')mf=b.servicio.includes('COMISI\u00d3N NACIONAL DE RIEGO');
-    else if(pfFilter==='sub2')mf=b.servicio.includes('CORPORACI\u00d3N NACIONAL FORESTAL');
-    else if(pfFilter==='sub3')mf=b.servicio.includes('INSTITUTO DE DESARROLLO AGROPECUARIO');
-    else if(pfFilter==='sub4')mf=b.servicio.includes('SERVICIO AGR\u00cdCOLA Y GANADERO');
-    else if(pfFilter==='sub5')mf=b.servicio.includes('SUBSECRETAR\u00cdA DE AGRICULTURA');
-    else if(pfFilter==='flags')mf=(b.total_flags||0)>0;
-    else if(pfFilter==='cond0')mf=b.estado==='Sin observaciones';
-    else if(pfFilter==='cond1')mf=b.estado==='Rebajar presupuesto';
-    else if(pfFilter==='cond2')mf=b.estado==='Descontinuar';
-    return mq&&mf;
+    var ms=true;
+    if(pfServ==='sub1')ms=b.servicio.includes('COMISI\u00d3N NACIONAL DE RIEGO');
+    else if(pfServ==='sub2')ms=b.servicio.includes('CORPORACI\u00d3N NACIONAL FORESTAL');
+    else if(pfServ==='sub3')ms=b.servicio.includes('INSTITUTO DE DESARROLLO AGROPECUARIO');
+    else if(pfServ==='sub4')ms=b.servicio.includes('SERVICIO AGR\u00cdCOLA Y GANADERO');
+    else if(pfServ==='sub5')ms=b.servicio.includes('SUBSECRETAR\u00cdA DE AGRICULTURA');
+    var mr=true;
+    if(pfReco==='cond0')mr=b.estado==='Sin observaciones';
+    else if(pfReco==='cond1')mr=b.estado==='Rebajar presupuesto';
+    else if(pfReco==='cond2')mr=b.estado==='Descontinuar';
+    return mq && ms && mr;
   });
   renderList(items);
   document.getElementById('ficha-wrap').style.display='none';

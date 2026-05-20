@@ -21,6 +21,7 @@
   --bg:#ffffff;
   --bg-card:#e3e8f1;
   --azul-gob:#173277;
+  --rojo-gob:#EB3C46;
   --gris-claro:#E5E7EB;
   /* COLORES DE LAS CAJITAS DE PROGRAMAS*/
   --program-card-bg: var(--bg-card);
@@ -34,7 +35,6 @@ body{font-family:var(--fb);
   font-feature-settings: "tnum", "ss01";
   background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;min-height:100vh}
 .hdr{background:var(--azul-gob);color:#F4F1EB;padding:2.5rem 2.5rem 2rem;position:relative;overflow:hidden}
-.hdr::before{content:'';position:absolute;top:-50px;right:-50px;width:260px;height:260px;border:35px solid rgba(200,80,26,.15);border-radius:50%}
 .hdr-eye{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,235,.45);margin-bottom:.6rem}
 .hdr h1{font-family:var(--fd);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;line-height:1.15;position:relative}
 .hdr h1 em{color:#fff;font-style:normal}
@@ -78,7 +78,7 @@ body{font-family:var(--fb);
   letter-spacing: 0.08em;          
   text-transform: uppercase;
   color: var(--bg);
-  background: rgb(23,50,119,0.8);
+  background: rgb(23,50,119,1);
   padding: .75rem 1rem .55rem;   
   position: sticky;
   top: 0;
@@ -113,9 +113,9 @@ body{font-family:var(--fb);
   color: var(--ink);
 }
 .tree-prog.active {
-  background: rgba(23,50,119,0.6);           /* azul institucional sólido */
-  color: var(--bg);                /* texto blanco */
-  border-left-color: #EB3C46;    /* borde izq. rojo (acento bandera Chile, sutil) */
+  background: rgba(23,50,119,0.2);           /* azul institucional sólido */
+  color: var(--rojo-gob);                /* texto blanco */
+  border-left-color: var(--rojo-gob);    /* borde izq. rojo (acento bandera Chile, sutil) */
   font-weight: 600;
 }
 .tree-prog.active .tp-dot {
